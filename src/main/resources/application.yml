@@ -1,0 +1,31 @@
+# DataSource Configuration
+spring:
+
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+# Flyway Configuration
+  flyway:
+    url: jdbc:postgresql://localhost:5432/postgres
+    locations: classpath:db/migration
+    user: postgres
+    password: postgres
+
+axon:
+  serializer:
+    ## xstream is not compatible anymore with jdk17+
+    general: jackson
+  axonserver:
+    enabled: false
+
+application:
+  debug:
+    enabled: true

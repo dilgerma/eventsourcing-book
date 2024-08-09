@@ -1,0 +1,4001 @@
+{
+  "slices": [
+    {
+      "id": "",
+      "title": "slice: submit cart",
+      "context": "",
+      "commands": [
+        {
+          "id": "3458764596109969508",
+          "slice": "slice: submit cart",
+          "title": "Submit Cart",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "description",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "image",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "price",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "totalPrice",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "COMMAND",
+          "description": "",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764595641022547",
+              "type": "OUTBOUND",
+              "title": "Cart Submitted",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "events": [
+        {
+          "id": "3458764595641022547",
+          "slice": "slice: submit cart",
+          "title": "Cart Submitted",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "description",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "image",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "price",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "totalPrice",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "Cart",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596111217572",
+              "type": "OUTBOUND",
+              "title": "Submitted Cart Data",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764596109969508",
+              "type": "INBOUND",
+              "title": "Submit Cart",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "readmodels": [],
+      "screens": [],
+      "processors": [],
+      "specifications": [
+        {
+          "sliceName": "slice: submit cart",
+          "title": "spec:  submit cart",
+          "given": [
+            {
+              "title": "Item Added",
+              "id": "3458764596110807311",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": ""
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": ""
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": ""
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595631345476"
+            }
+          ],
+          "when": [
+            {
+              "title": "Submit Cart",
+              "id": "3458764596110807312",
+              "index": 0,
+              "type": "SPEC_COMMAND",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": ""
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "itemId",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "price",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "totalPrice",
+                  "type": "String",
+                  "example": ""
+                }
+              ],
+              "linkedId": "3458764596109969508"
+            }
+          ],
+          "then": [
+            {
+              "title": "Cart Submitted",
+              "id": "3458764596110807313",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": ""
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "itemId",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "price",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "totalPrice",
+                  "type": "String",
+                  "example": ""
+                }
+              ],
+              "linkedId": "3458764595641022547"
+            }
+          ]
+        },
+        {
+          "sliceName": "slice: submit cart",
+          "title": "spec:  submit empty cart",
+          "given": [],
+          "when": [
+            {
+              "title": "Submit Cart",
+              "id": "3458764596110807649",
+              "index": 0,
+              "type": "SPEC_COMMAND",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": ""
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "itemId",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "price",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "totalPrice",
+                  "type": "String",
+                  "example": ""
+                }
+              ],
+              "linkedId": "3458764596109969508"
+            }
+          ],
+          "then": [
+            {
+              "title": "Error-Case",
+              "id": "3458764596110807650",
+              "index": 0,
+              "type": "SPEC_ERROR"
+            }
+          ]
+        },
+        {
+          "sliceName": "slice: submit cart",
+          "title": "spec:  submit cart without quantity",
+          "given": [
+            {
+              "title": "Inventory Changed",
+              "id": "3458764596400921868",
+              "index": 1,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "inventory",
+                  "type": "Int",
+                  "example": "0"
+                },
+                {
+                  "name": "productId",
+                  "type": "String",
+                  "example": ""
+                }
+              ],
+              "linkedId": "3458764596395403355"
+            },
+            {
+              "title": "Item Added",
+              "id": "3458764596400921867",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595631345476"
+            }
+          ],
+          "when": [
+            {
+              "title": "Submit Cart",
+              "id": "3458764596400921869",
+              "index": 0,
+              "type": "SPEC_COMMAND",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "itemId",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "price",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "totalPrice",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764596109969508"
+            }
+          ],
+          "then": [
+            {
+              "title": "Error-Case",
+              "id": "3458764596400921870",
+              "index": 0,
+              "type": "SPEC_ERROR"
+            }
+          ]
+        }
+      ],
+      "actors": [],
+      "aggregates": [
+        "Cart"
+      ]
+    },
+    {
+      "id": "",
+      "title": "slice: publish cart",
+      "context": "",
+      "commands": [
+        {
+          "id": "3458764596112734332",
+          "slice": "slice: publish cart",
+          "title": "Publish Cart",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "description",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "image",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "price",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "totalPrice",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "COMMAND",
+          "description": "",
+          "aggregateDependencies": [],
+          "dependencies": [
+            {
+              "id": "3458764596112850382",
+              "type": "OUTBOUND",
+              "title": "External Cart Published",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764596112734108",
+              "type": "INBOUND",
+              "title": "automation",
+              "elementType": "AUTOMATION"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "events": [
+        {
+          "id": "3458764596112850382",
+          "slice": "slice: publish cart",
+          "title": "External Cart Published",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "description",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "image",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "price",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "totalPrice",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregateDependencies": [],
+          "dependencies": [
+            {
+              "id": "3458764596112734332",
+              "type": "INBOUND",
+              "title": "Publish Cart",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "readmodels": [],
+      "screens": [],
+      "processors": [
+        {
+          "id": "3458764596112734108",
+          "slice": "slice: publish cart",
+          "title": "automation",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "description",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "image",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "price",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "totalPrice",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "AUTOMATION",
+          "description": "",
+          "aggregateDependencies": [],
+          "dependencies": [
+            {
+              "id": "3458764596112734332",
+              "type": "OUTBOUND",
+              "title": "Publish Cart",
+              "elementType": "COMMAND"
+            },
+            {
+              "id": "3458764596111217572",
+              "type": "INBOUND",
+              "title": "Submitted Cart Data",
+              "elementType": "READMODEL"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "specifications": [
+        {
+          "sliceName": "slice: publish cart",
+          "title": "spec:  publish cart",
+          "given": [
+            {
+              "title": "Cart Submitted",
+              "id": "3458764596113798871",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "itemId",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "price",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "totalPrice",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595641022547"
+            }
+          ],
+          "when": [
+            {
+              "title": "Publish Cart",
+              "id": "3458764596113798872",
+              "index": 0,
+              "type": "SPEC_COMMAND",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "itemId",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "price",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "totalPrice",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764596112734332"
+            }
+          ],
+          "then": [
+            {
+              "title": "External Cart Published",
+              "id": "3458764596113798873",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": ""
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "itemId",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "price",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "totalPrice",
+                  "type": "String",
+                  "example": ""
+                }
+              ],
+              "linkedId": "3458764596112850382"
+            }
+          ]
+        }
+      ],
+      "actors": [],
+      "aggregates": []
+    },
+    {
+      "id": "",
+      "title": "slice: submitted cart data",
+      "context": "",
+      "commands": [],
+      "events": [],
+      "readmodels": [
+        {
+          "id": "3458764596111217572",
+          "slice": "slice: submitted cart data",
+          "title": "Submitted Cart Data",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "description",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "image",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "price",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "totalPrice",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "READMODEL",
+          "description": "",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596112734108",
+              "type": "OUTBOUND",
+              "title": "automation",
+              "elementType": "AUTOMATION"
+            },
+            {
+              "id": "3458764595641022547",
+              "type": "INBOUND",
+              "title": "Cart Submitted",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "screens": [],
+      "processors": [],
+      "specifications": [
+        {
+          "sliceName": "slice: submitted cart data",
+          "title": "spec:  submitted cart data",
+          "given": [
+            {
+              "title": "Cart Submitted",
+              "id": "3458764596112606806",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": ""
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "itemId",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "price",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "totalPrice",
+                  "type": "String",
+                  "example": ""
+                }
+              ],
+              "linkedId": "3458764595641022547"
+            }
+          ],
+          "when": [],
+          "then": [
+            {
+              "title": "Submitted Cart Data",
+              "id": "3458764596112606807",
+              "index": 0,
+              "type": "SPEC_READMODEL",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": ""
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "price",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "itemId",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "totalPrice",
+                  "type": "String",
+                  "example": ""
+                }
+              ],
+              "linkedId": "3458764596111217572"
+            }
+          ]
+        }
+      ],
+      "actors": [],
+      "aggregates": [
+        "Cart"
+      ]
+    },
+    {
+      "id": "",
+      "title": "slice: Cart Items to Remove",
+      "context": "",
+      "commands": [],
+      "events": [],
+      "readmodels": [
+        {
+          "id": "3458764596409524245",
+          "slice": "slice: Cart Items to Remove",
+          "title": "Cart Items to Remove",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "READMODEL",
+          "description": "",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596409524207",
+              "type": "OUTBOUND",
+              "title": "automation",
+              "elementType": "AUTOMATION"
+            },
+            {
+              "id": "3458764596409524017",
+              "type": "INBOUND",
+              "title": "Item Removal Scheduled",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "screens": [],
+      "processors": [],
+      "specifications": [],
+      "actors": [],
+      "aggregates": [
+        "Cart"
+      ]
+    },
+    {
+      "id": "",
+      "title": "slice: Archive Item",
+      "context": "",
+      "commands": [
+        {
+          "id": "3458764596409524598",
+          "slice": "slice: Archive Item",
+          "title": "Archive Item",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "COMMAND",
+          "description": "",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764595641022551",
+              "type": "OUTBOUND",
+              "title": "Item Archived",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764596409524207",
+              "type": "INBOUND",
+              "title": "automation",
+              "elementType": "AUTOMATION"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "events": [
+        {
+          "id": "3458764595641022551",
+          "slice": "slice: Archive Item",
+          "title": "Item Archived",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "Cart",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596409524598",
+              "type": "INBOUND",
+              "title": "Archive Item",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "readmodels": [],
+      "screens": [],
+      "processors": [
+        {
+          "id": "3458764596409524207",
+          "slice": "slice: Archive Item",
+          "title": "automation",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "AUTOMATION",
+          "description": "",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596409524598",
+              "type": "OUTBOUND",
+              "title": "Archive Item",
+              "elementType": "COMMAND"
+            },
+            {
+              "id": "3458764596409524245",
+              "type": "INBOUND",
+              "title": "Cart Items to Remove",
+              "elementType": "READMODEL"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "specifications": [],
+      "actors": [
+        {
+          "name": "bots",
+          "authzRequired": false
+        }
+      ],
+      "aggregates": [
+        "Cart"
+      ]
+    },
+    {
+      "id": "",
+      "title": "slice: change price",
+      "context": "",
+      "commands": [
+        {
+          "id": "3458764596402011072",
+          "slice": "slice: change price",
+          "title": "Change Price",
+          "fields": [
+            {
+              "name": "newPrice",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "oldPrice",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "productId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "COMMAND",
+          "description": "",
+          "aggregateDependencies": [
+            "Pricing"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764595641022550",
+              "type": "OUTBOUND",
+              "title": "Price Changed",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764596401905894",
+              "type": "INBOUND",
+              "title": "automation",
+              "elementType": "AUTOMATION"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "events": [
+        {
+          "id": "3458764595641022550",
+          "slice": "slice: change price",
+          "title": "Price Changed",
+          "fields": [
+            {
+              "name": "newPrice",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "oldPrice",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "productId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "Pricing",
+          "aggregateDependencies": [
+            "Pricing"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596409128019",
+              "type": "OUTBOUND",
+              "title": "Changed Prices",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764596402011072",
+              "type": "INBOUND",
+              "title": "Change Price",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "readmodels": [],
+      "screens": [],
+      "processors": [
+        {
+          "id": "3458764596401905894",
+          "slice": "slice: change price",
+          "title": "automation",
+          "fields": [
+            {
+              "name": "newPrice",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "oldPrice",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "productId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "AUTOMATION",
+          "description": "",
+          "aggregateDependencies": [
+            "Pricing"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596402011072",
+              "type": "OUTBOUND",
+              "title": "Change Price",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "specifications": [],
+      "actors": [
+        {
+          "name": "bots",
+          "authzRequired": false
+        }
+      ],
+      "aggregates": [
+        "Pricing"
+      ]
+    },
+    {
+      "id": "",
+      "title": "slice: Schedule Item Removal ",
+      "context": "",
+      "commands": [
+        {
+          "id": "3458764596409128453",
+          "slice": "slice: Schedule Item Removal ",
+          "title": "Schedule Item Removal ",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "cartId",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "COMMAND",
+          "description": "",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596409524017",
+              "type": "OUTBOUND",
+              "title": "Item Removal Scheduled",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764596406327949",
+              "type": "INBOUND",
+              "title": "automation",
+              "elementType": "AUTOMATION"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "events": [
+        {
+          "id": "3458764596409524017",
+          "slice": "slice: Schedule Item Removal ",
+          "title": "Item Removal Scheduled",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "Cart",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596409524245",
+              "type": "OUTBOUND",
+              "title": "Cart Items to Remove",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764596409128453",
+              "type": "INBOUND",
+              "title": "Schedule Item Removal ",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "readmodels": [],
+      "screens": [],
+      "processors": [
+        {
+          "id": "3458764596406327949",
+          "slice": "slice: Schedule Item Removal ",
+          "title": "automation",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "cartId",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "productId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "AUTOMATION",
+          "description": "",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596409128453",
+              "type": "OUTBOUND",
+              "title": "Schedule Item Removal ",
+              "elementType": "COMMAND"
+            },
+            {
+              "id": "3458764596409128019",
+              "type": "INBOUND",
+              "title": "Changed Prices",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764596403196690",
+              "type": "INBOUND",
+              "title": "Carts with Products",
+              "elementType": "READMODEL"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "specifications": [],
+      "actors": [
+        {
+          "name": "bots",
+          "authzRequired": false
+        }
+      ],
+      "aggregates": [
+        "Cart"
+      ]
+    },
+    {
+      "id": "",
+      "title": "slice: Changed Prices",
+      "context": "",
+      "commands": [],
+      "events": [],
+      "readmodels": [
+        {
+          "id": "3458764596409128019",
+          "slice": "slice: Changed Prices",
+          "title": "Changed Prices",
+          "fields": [
+            {
+              "name": "newPrice",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "oldPrice",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "productId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "READMODEL",
+          "description": "",
+          "aggregateDependencies": [
+            "Pricing"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596406327949",
+              "type": "OUTBOUND",
+              "title": "automation",
+              "elementType": "AUTOMATION"
+            },
+            {
+              "id": "3458764595641022550",
+              "type": "INBOUND",
+              "title": "Price Changed",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "screens": [],
+      "processors": [],
+      "specifications": [],
+      "actors": [],
+      "aggregates": [
+        "Pricing"
+      ]
+    },
+    {
+      "id": "",
+      "title": "slice: cart with products",
+      "context": "",
+      "commands": [],
+      "events": [],
+      "readmodels": [
+        {
+          "id": "3458764596403196690",
+          "slice": "slice: cart with products",
+          "title": "Carts with Products",
+          "fields": [
+            {
+              "name": "productId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "cartId",
+              "type": "String",
+              "example": "",
+              "mapping": "aggregateId",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "READMODEL",
+          "description": "",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596406327949",
+              "type": "OUTBOUND",
+              "title": "automation",
+              "elementType": "AUTOMATION"
+            },
+            {
+              "id": "3458764595631345609",
+              "type": "INBOUND",
+              "title": "Item Removed",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764595641022548",
+              "type": "INBOUND",
+              "title": "Cart Cleared",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764595631345476",
+              "type": "INBOUND",
+              "title": "Item Added",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764596402400430",
+              "type": "INBOUND",
+              "title": "Cart Created",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "screens": [],
+      "processors": [],
+      "specifications": [],
+      "actors": [],
+      "aggregates": [
+        "Cart"
+      ]
+    },
+    {
+      "id": "",
+      "title": "slice: cart items",
+      "context": "",
+      "commands": [],
+      "events": [],
+      "readmodels": [
+        {
+          "id": "3458764595935405655",
+          "slice": "slice: cart items",
+          "title": "cart items",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "description",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "image",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "price",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "totalPrice",
+              "type": "Double",
+              "example": "",
+              "mapping": "price",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "READMODEL",
+          "description": "",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764595935405694",
+              "type": "OUTBOUND",
+              "title": "title",
+              "elementType": "SCREEN"
+            },
+            {
+              "id": "3458764595631345609",
+              "type": "INBOUND",
+              "title": "Item Removed",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764595631345476",
+              "type": "INBOUND",
+              "title": "Item Added",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764595641022548",
+              "type": "INBOUND",
+              "title": "Cart Cleared",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": true,
+          "apiEndpoint": ""
+        }
+      ],
+      "screens": [
+        {
+          "id": "3458764595935405694",
+          "slice": "slice: cart items",
+          "title": "title",
+          "fields": [
+            {
+              "name": "description",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "image",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "price",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "totalPrice",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "SCREEN",
+          "description": "",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764595935405655",
+              "type": "INBOUND",
+              "title": "cart items",
+              "elementType": "READMODEL"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "processors": [],
+      "specifications": [
+        {
+          "sliceName": "slice: cart items",
+          "title": "spec:  cart items",
+          "given": [
+            {
+              "title": "Item Added",
+              "id": "3458764595862127043",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": "5"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": ""
+                },
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595631345476"
+            }
+          ],
+          "when": [],
+          "then": [
+            {
+              "title": "cart items",
+              "id": "3458764595862127044",
+              "index": 0,
+              "type": "SPEC_READMODEL",
+              "fields": [
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": "5"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": ""
+                },
+                {
+                  "name": "totalPrice",
+                  "type": "Double",
+                  "example": ""
+                },
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595831018749"
+            }
+          ]
+        },
+        {
+          "sliceName": "slice: cart items",
+          "title": "spec:  cart items removed",
+          "given": [
+            {
+              "title": "Item Removed",
+              "id": "3458764595862127483",
+              "index": 1,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595631345609"
+            },
+            {
+              "title": "Item Added",
+              "id": "3458764595862127482",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": "5"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": ""
+                },
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595631345476"
+            }
+          ],
+          "when": [],
+          "then": [
+            {
+              "title": "cart items",
+              "id": "3458764595862127484",
+              "index": 0,
+              "type": "SPEC_READMODEL",
+              "fields": [
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": "0"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": ""
+                },
+                {
+                  "name": "totalPrice",
+                  "type": "Double",
+                  "example": ""
+                },
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595831018749"
+            }
+          ]
+        },
+        {
+          "sliceName": "slice: cart items",
+          "title": "spec:  cart items cleared",
+          "given": [
+            {
+              "title": "Cart Cleared",
+              "id": "3458764595935851048",
+              "index": 1,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595641022548"
+            },
+            {
+              "title": "Item Added",
+              "id": "3458764595935851047",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595631345476"
+            }
+          ],
+          "when": [],
+          "then": [
+            {
+              "title": "cart items",
+              "id": "3458764595935851049",
+              "index": 0,
+              "type": "SPEC_READMODEL",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "totalPrice",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "price",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595831018749"
+            }
+          ]
+        },
+        {
+          "sliceName": "slice: cart items",
+          "title": "spec:  cart items",
+          "given": [
+            {
+              "title": "Inventory Changed",
+              "id": "3458764596400589313",
+              "index": 1,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "inventory",
+                  "type": "Int",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764596395403355"
+            },
+            {
+              "title": "Item Added",
+              "id": "3458764596400589311",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595631345476"
+            }
+          ],
+          "when": [],
+          "then": [
+            {
+              "title": "cart items",
+              "id": "3458764596400589314",
+              "index": 0,
+              "type": "SPEC_READMODEL",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "totalPrice",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "price",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595831018749"
+            }
+          ]
+        }
+      ],
+      "actors": [],
+      "aggregates": [
+        "Cart"
+      ]
+    },
+    {
+      "id": "",
+      "title": "slice: add item",
+      "context": "",
+      "commands": [
+        {
+          "id": "3458764595812558688",
+          "slice": "slice: add item",
+          "title": "Add Item",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "description",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "image",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "price",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "totalPrice",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "productId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "COMMAND",
+          "description": "",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764595631345476",
+              "type": "OUTBOUND",
+              "title": "Item Added",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764596402400430",
+              "type": "OUTBOUND",
+              "title": "Cart Created",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "events": [
+        {
+          "id": "3458764596402400430",
+          "slice": "slice: add item",
+          "title": "Cart Created",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "Cart",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596403196690",
+              "type": "OUTBOUND",
+              "title": "Carts with Products",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764595631345476",
+              "type": "INBOUND",
+              "title": "Item Added",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764595812558688",
+              "type": "INBOUND",
+              "title": "Add Item",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        },
+        {
+          "id": "3458764595631345476",
+          "slice": "slice: add item",
+          "title": "Item Added",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "description",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "image",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "price",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "productId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "Cart",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596402400430",
+              "type": "OUTBOUND",
+              "title": "Cart Created",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764596403196690",
+              "type": "OUTBOUND",
+              "title": "Carts with Products",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764595935405655",
+              "type": "OUTBOUND",
+              "title": "cart items",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764595831018749",
+              "type": "OUTBOUND",
+              "title": "cart items",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764595812558688",
+              "type": "INBOUND",
+              "title": "Add Item",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "readmodels": [],
+      "screens": [],
+      "processors": [],
+      "specifications": [
+        {
+          "sliceName": "slice: add item",
+          "title": "spec:  max 3 items per cart",
+          "given": [
+            {
+              "title": "Item Added",
+              "id": "3458764595860929756",
+              "index": 2,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595631345476"
+            },
+            {
+              "title": "Item Added",
+              "id": "3458764595860929755",
+              "index": 1,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595631345476"
+            },
+            {
+              "title": "Item Added",
+              "id": "3458764595860929754",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595631345476"
+            }
+          ],
+          "when": [
+            {
+              "title": "Add Item",
+              "id": "3458764595860929757",
+              "index": 0,
+              "type": "SPEC_COMMAND",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "totalPrice",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595812558688"
+            }
+          ],
+          "then": [
+            {
+              "title": "Cart Created",
+              "id": "3458764596402842669",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764596402400430"
+            },
+            {
+              "title": "Error-Case",
+              "id": "3458764595860929759",
+              "index": 0,
+              "type": "SPEC_ERROR"
+            }
+          ]
+        },
+        {
+          "sliceName": "slice: add item",
+          "title": "spec:  add item with empty inventory",
+          "given": [
+            {
+              "title": "Inventory Changed",
+              "id": "3458764596400668148",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "inventory",
+                  "type": "Int",
+                  "example": "0"
+                },
+                {
+                  "name": "productId",
+                  "type": "String",
+                  "example": ""
+                }
+              ],
+              "linkedId": "3458764596395403355"
+            }
+          ],
+          "when": [
+            {
+              "title": "Add Item",
+              "id": "3458764596400668149",
+              "index": 0,
+              "type": "SPEC_COMMAND",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "totalPrice",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595812558688"
+            }
+          ],
+          "then": [
+            {
+              "title": "Cart Created",
+              "id": "3458764596402842800",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764596402400430"
+            },
+            {
+              "title": "Error-Case",
+              "id": "3458764596400668151",
+              "index": 0,
+              "type": "SPEC_ERROR"
+            }
+          ]
+        },
+        {
+          "sliceName": "slice: add item",
+          "title": "spec:  add item",
+          "given": [],
+          "when": [
+            {
+              "title": "Add Item",
+              "id": "3458764596402842499",
+              "index": 0,
+              "type": "SPEC_COMMAND",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "totalPrice",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595812558688"
+            }
+          ],
+          "then": [
+            {
+              "title": "Item Added",
+              "id": "3458764596402842501",
+              "index": 1,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595631345476"
+            },
+            {
+              "title": "Cart Created",
+              "id": "3458764596402842500",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764596402400430"
+            }
+          ]
+        }
+      ],
+      "actors": [],
+      "aggregates": [
+        "Cart"
+      ]
+    },
+    {
+      "id": "",
+      "title": "slice: remove item",
+      "context": "",
+      "commands": [
+        {
+          "id": "3458764595830770125",
+          "slice": "slice: remove item",
+          "title": "Remove Item",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "COMMAND",
+          "description": "",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764595631345609",
+              "type": "OUTBOUND",
+              "title": "Item Removed",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764595668362949",
+              "type": "INBOUND",
+              "title": "title",
+              "elementType": "SCREEN"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "events": [
+        {
+          "id": "3458764595631345609",
+          "slice": "slice: remove item",
+          "title": "Item Removed",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "Cart",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596403196690",
+              "type": "OUTBOUND",
+              "title": "Carts with Products",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764595935405655",
+              "type": "OUTBOUND",
+              "title": "cart items",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764595831018749",
+              "type": "OUTBOUND",
+              "title": "cart items",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764595830770125",
+              "type": "INBOUND",
+              "title": "Remove Item",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "readmodels": [],
+      "screens": [
+        {
+          "id": "3458764595668362949",
+          "slice": "slice: remove item",
+          "title": "title",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "description",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "image",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "price",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "totalPrice",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "SCREEN",
+          "description": "",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764595830770125",
+              "type": "OUTBOUND",
+              "title": "Remove Item",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "processors": [],
+      "specifications": [],
+      "actors": [
+        {
+          "name": "User",
+          "authzRequired": false
+        }
+      ],
+      "aggregates": [
+        "Cart"
+      ]
+    },
+    {
+      "id": "",
+      "title": "slice: Inventories",
+      "context": "",
+      "commands": [],
+      "events": [],
+      "readmodels": [
+        {
+          "id": "3458764596395903488",
+          "slice": "slice: Inventories",
+          "title": "Inventories",
+          "fields": [
+            {
+              "name": "inventory",
+              "type": "Int",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "productId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "READMODEL",
+          "description": "",
+          "aggregateDependencies": [
+            "Inventory"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596395903754",
+              "type": "OUTBOUND",
+              "title": "title",
+              "elementType": "SCREEN"
+            },
+            {
+              "id": "3458764596395403355",
+              "type": "INBOUND",
+              "title": "Inventory Changed",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "screens": [
+        {
+          "id": "3458764596395903754",
+          "slice": "slice: Inventories",
+          "title": "title",
+          "fields": [
+            {
+              "name": "inventory",
+              "type": "Int",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "productId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "SCREEN",
+          "description": "",
+          "aggregateDependencies": [
+            "Inventory"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596395903488",
+              "type": "INBOUND",
+              "title": "Inventories",
+              "elementType": "READMODEL"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "processors": [],
+      "specifications": [],
+      "actors": [],
+      "aggregates": [
+        "Inventory"
+      ]
+    },
+    {
+      "id": "",
+      "title": "slice: change inventory",
+      "context": "",
+      "commands": [
+        {
+          "id": "3458764596395279433",
+          "slice": "slice: change inventory",
+          "title": "Change Inventory",
+          "fields": [
+            {
+              "name": "inventory",
+              "type": "Int",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "productId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "COMMAND",
+          "description": "",
+          "aggregateDependencies": [
+            "Inventory"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596395403355",
+              "type": "OUTBOUND",
+              "title": "Inventory Changed",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764596395278973",
+              "type": "INBOUND",
+              "title": "automation",
+              "elementType": "AUTOMATION"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "events": [
+        {
+          "id": "3458764596395403355",
+          "slice": "slice: change inventory",
+          "title": "Inventory Changed",
+          "fields": [
+            {
+              "name": "inventory",
+              "type": "Int",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "productId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "Inventory",
+          "aggregateDependencies": [
+            "Inventory"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596395903488",
+              "type": "OUTBOUND",
+              "title": "Inventories",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764596395279433",
+              "type": "INBOUND",
+              "title": "Change Inventory",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "readmodels": [],
+      "screens": [],
+      "processors": [
+        {
+          "id": "3458764596395278973",
+          "slice": "slice: change inventory",
+          "title": "automation",
+          "fields": [
+            {
+              "name": "inventory",
+              "type": "Int",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "productId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "AUTOMATION",
+          "description": "",
+          "aggregateDependencies": [
+            "Inventory"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596395279433",
+              "type": "OUTBOUND",
+              "title": "Change Inventory",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "specifications": [],
+      "actors": [
+        {
+          "name": "bots",
+          "authzRequired": false
+        }
+      ],
+      "aggregates": [
+        "Inventory"
+      ]
+    },
+    {
+      "id": "",
+      "title": "slice: clear cart",
+      "context": "",
+      "commands": [
+        {
+          "id": "3458764595934952195",
+          "slice": "slice: clear cart",
+          "title": "Clear Cart",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "COMMAND",
+          "description": "",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764595641022548",
+              "type": "OUTBOUND",
+              "title": "Cart Cleared",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764595831398076",
+              "type": "INBOUND",
+              "title": "title",
+              "elementType": "SCREEN"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "events": [
+        {
+          "id": "3458764595641022548",
+          "slice": "slice: clear cart",
+          "title": "Cart Cleared",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "Cart",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596403196690",
+              "type": "OUTBOUND",
+              "title": "Carts with Products",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764595935405655",
+              "type": "OUTBOUND",
+              "title": "cart items",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764595934952195",
+              "type": "INBOUND",
+              "title": "Clear Cart",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "readmodels": [],
+      "screens": [
+        {
+          "id": "3458764595831398076",
+          "slice": "slice: clear cart",
+          "title": "title",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "description",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "image",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "itemId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "price",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "totalPrice",
+              "type": "Double",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "SCREEN",
+          "description": "",
+          "aggregateDependencies": [
+            "Cart"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764595934952195",
+              "type": "OUTBOUND",
+              "title": "Clear Cart",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "processors": [],
+      "specifications": [
+        {
+          "sliceName": "slice: clear cart",
+          "title": "spec:  clear cart",
+          "given": [
+            {
+              "title": "Item Added",
+              "id": "3458764595935790592",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "description",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "image",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "price",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "itemId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595631345476"
+            }
+          ],
+          "when": [
+            {
+              "title": "Clear Cart",
+              "id": "3458764595935790593",
+              "index": 0,
+              "type": "SPEC_COMMAND",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595934952195"
+            }
+          ],
+          "then": [
+            {
+              "title": "Cart Cleared",
+              "id": "3458764595935790594",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595641022548"
+            }
+          ]
+        }
+      ],
+      "actors": [
+        {
+          "name": "User",
+          "authzRequired": false
+        }
+      ],
+      "aggregates": [
+        "Cart"
+      ]
+    }
+  ],
+  "flows": [],
+  "aggregates": [
+    {
+      "id": "3458764596700773581",
+      "title": "Cart",
+      "fields": [],
+      "type": "AGGREGATE"
+    },
+    {
+      "id": "3458764596700773691",
+      "title": "Pricing",
+      "fields": [],
+      "type": "AGGREGATE"
+    },
+    {
+      "id": "3458764596700773657",
+      "title": "Inventory",
+      "fields": [],
+      "type": "AGGREGATE"
+    }
+  ],
+  "context": "Cart",
+  "codeGen": {
+    "rootPackage": "de.eventsourcingbook.cart",
+    "contextPackage": ""
+  },
+  "boardId": "uXjVKvTN_NQ="
+}
