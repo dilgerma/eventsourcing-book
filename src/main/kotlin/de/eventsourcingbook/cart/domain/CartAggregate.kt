@@ -2,8 +2,10 @@ package de.eventsourcingbook.cart.domain
 
 import de.eventsourcingbook.cart.common.CommandException
 import de.eventsourcingbook.cart.domain.commands.additem.AddItemCommand
+import de.eventsourcingbook.cart.domain.commands.removeitem.RemoveItemCommand
 import de.eventsourcingbook.cart.events.CartCreatedEvent
 import de.eventsourcingbook.cart.events.ItemAddedEvent
+import de.eventsourcingbook.cart.events.ItemRemovedEvent
 import java.util.UUID
 import org.axonframework.commandhandling.CommandHandler
 import org.axonframework.eventsourcing.EventSourcingHandler
@@ -18,6 +20,9 @@ class CartAggregate {
 
   @AggregateIdentifier var aggregateId: UUID? = null
 
+  val cartItems = mutableListOf<UUID>()
+
+  // Add Item
   @CommandHandler
   @CreationPolicy(AggregateCreationPolicy.CREATE_IF_MISSING)
   fun handle(command: AddItemCommand) {
@@ -42,10 +47,23 @@ class CartAggregate {
     this.aggregateId = event.aggregateId
   }
 
-  val cartItems = mutableListOf<UUID>()
-
   @EventSourcingHandler
   fun on(event: ItemAddedEvent) {
     this.cartItems.add(event.itemId)
+  }
+
+  // Remove Item
+
+  @CommandHandler
+  fun handle(command: RemoveItemCommand) {
+    if (!this.cartItems.contains(command.itemId)) {
+      throw CommandException("Item ${command.itemId} not in the Cart")
+    }
+    AggregateLifecycle.apply(ItemRemovedEvent(command.aggregateId, command.itemId))
+  }
+
+  @EventSourcingHandler
+  fun on(event: ItemRemovedEvent) {
+    this.cartItems.remove(event.itemId)
   }
 }
