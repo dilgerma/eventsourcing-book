@@ -2,7 +2,9 @@ package de.eventsourcingbook.cart.domain
 
 import de.eventsourcingbook.cart.common.CommandException
 import de.eventsourcingbook.cart.domain.commands.additem.AddItemCommand
+import de.eventsourcingbook.cart.domain.commands.clearcart.ClearCartCommand
 import de.eventsourcingbook.cart.domain.commands.removeitem.RemoveItemCommand
+import de.eventsourcingbook.cart.events.CartClearedEvent
 import de.eventsourcingbook.cart.events.CartCreatedEvent
 import de.eventsourcingbook.cart.events.ItemAddedEvent
 import de.eventsourcingbook.cart.events.ItemRemovedEvent
@@ -65,5 +67,17 @@ class CartAggregate {
   @EventSourcingHandler
   fun on(event: ItemRemovedEvent) {
     this.cartItems.remove(event.itemId)
+  }
+
+  // Clear Cart
+
+  @CommandHandler
+  fun handle(command: ClearCartCommand) {
+    AggregateLifecycle.apply(CartClearedEvent(command.aggregateId))
+  }
+
+  @EventSourcingHandler
+  fun on(event: CartClearedEvent) {
+    this.cartItems.clear()
   }
 }
