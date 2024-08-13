@@ -1,4 +1,3 @@
-# DataSource Configuration
 spring:
 
   jpa:
@@ -18,6 +17,16 @@ spring:
     locations: classpath:db/migration
     user: postgres
     password: postgres
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: cart
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
 
 axon:
   serializer:

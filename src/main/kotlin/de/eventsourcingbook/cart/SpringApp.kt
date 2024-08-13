@@ -66,7 +66,6 @@ class AxonConfig {
     sharedModules = ["de.eventsourcingbook.cart.common", "de.eventsourcingbook.cart.domain"],
     useFullyQualifiedModuleNames = true)
 @EnableJpaRepositories
-@EnableKafka
 @SpringBootApplication
 @EnableScheduling
 @EntityScan(
@@ -77,6 +76,7 @@ class AxonConfig {
             "org.axonframework.eventhandling.tokenstore",
             "org.axonframework.eventsourcing.eventstore.jpa",
             "org.axonframework.modelling.saga.repository.jpa"])
+@EnableKafka
 class SpringApp {
   companion object {
     fun main(args: Array<String>) {
