@@ -1,10 +1,12 @@
 package de.eventsourcingbook.cart
 
+import mu.KotlinLogging
 import org.axonframework.commandhandling.CommandBus
 import org.axonframework.commandhandling.CommandMessage
 import org.axonframework.commandhandling.gateway.CommandGateway
 import org.axonframework.commandhandling.gateway.DefaultCommandGateway
 import org.axonframework.config.EventProcessingConfigurer
+import org.axonframework.eventhandling.LoggingErrorHandler
 import org.axonframework.eventhandling.PropagatingErrorHandler
 import org.axonframework.messaging.MessageDispatchInterceptor
 import org.axonframework.messaging.MessageHandlerInterceptor
@@ -42,9 +44,13 @@ class ValidationConfig {
 @Configuration
 class AxonConfig {
 
+  val logger = KotlinLogging.logger {}
+
   @Autowired
   fun configurationEventHandling(config: EventProcessingConfigurer) {
     config.registerDefaultListenerInvocationErrorHandler { PropagatingErrorHandler.instance() }
+
+    config.registerListenerInvocationErrorHandler("inventories") { LoggingErrorHandler() }
   }
 
   @Bean
