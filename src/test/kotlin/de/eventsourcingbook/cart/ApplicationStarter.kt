@@ -36,7 +36,8 @@ internal class ContainerConfiguration {
     // https://github.com/spring-projects/spring-boot/pull/40695
     // TODO switch to official image with spring 3.4.0
     val kafkaContainer =
-        KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka")).withReuse(true)
+        KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka"))
+            .withExposedPorts(9092)
     return kafkaContainer
   }
 

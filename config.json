@@ -2,6 +2,165 @@
   "slices": [
     {
       "id": "",
+      "title": "slice: Inventories",
+      "context": "",
+      "commands": [],
+      "events": [],
+      "readmodels": [
+        {
+          "id": "3458764596395903488",
+          "slice": "slice: Inventories",
+          "title": "Inventories",
+          "fields": [
+            {
+              "name": "inventory",
+              "type": "Int",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "productId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "READMODEL",
+          "description": "",
+          "aggregateDependencies": [
+            "Inventory"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596395903754",
+              "type": "OUTBOUND",
+              "title": "title",
+              "elementType": "SCREEN"
+            },
+            {
+              "id": "3458764596395403355",
+              "type": "INBOUND",
+              "title": "Inventory Changed",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "screens": [
+        {
+          "id": "3458764596395903754",
+          "slice": "slice: Inventories",
+          "title": "title",
+          "fields": [
+            {
+              "name": "inventory",
+              "type": "Int",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "productId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "SCREEN",
+          "description": "",
+          "aggregateDependencies": [
+            "Inventory"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764596395903488",
+              "type": "INBOUND",
+              "title": "Inventories",
+              "elementType": "READMODEL"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": ""
+        }
+      ],
+      "processors": [],
+      "specifications": [
+        {
+          "sliceName": "slice: Inventories",
+          "title": "spec:  Inventories",
+          "given": [
+            {
+              "title": "Inventory Changed",
+              "id": "3458764597266169274",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "inventory",
+                  "type": "Int",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764596395403355"
+            }
+          ],
+          "when": [],
+          "then": [
+            {
+              "title": "Inventories",
+              "id": "3458764597266169275",
+              "index": 0,
+              "type": "SPEC_READMODEL",
+              "fields": [
+                {
+                  "name": "inventory",
+                  "type": "Int",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764596395903488"
+            }
+          ]
+        }
+      ],
+      "actors": [],
+      "aggregates": [
+        "Inventory"
+      ]
+    },
+    {
+      "id": "",
       "title": "slice: change inventory",
       "context": "",
       "commands": [
@@ -3090,7 +3249,83 @@
           "apiEndpoint": ""
         }
       ],
-      "specifications": [],
+      "specifications": [
+        {
+          "sliceName": "slice: change price",
+          "title": "spec:  change price",
+          "given": [],
+          "when": [
+            {
+              "title": "Change Price",
+              "id": "3458764597370328089",
+              "index": 0,
+              "type": "SPEC_COMMAND",
+              "fields": [
+                {
+                  "name": "newPrice",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "oldPrice",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764596402011072"
+            }
+          ],
+          "then": [
+            {
+              "title": "Price Changed",
+              "id": "3458764597370328090",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "newPrice",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "oldPrice",
+                  "type": "Double",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "productId",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764595641022550"
+            }
+          ]
+        }
+      ],
       "actors": [
         {
           "name": "bots",
@@ -3253,165 +3488,6 @@
       "actors": [],
       "aggregates": [
         "Cart"
-      ]
-    },
-    {
-      "id": "",
-      "title": "slice: Inventories",
-      "context": "",
-      "commands": [],
-      "events": [],
-      "readmodels": [
-        {
-          "id": "3458764596395903488",
-          "slice": "slice: Inventories",
-          "title": "Inventories",
-          "fields": [
-            {
-              "name": "inventory",
-              "type": "Int",
-              "example": "",
-              "mapping": "",
-              "optional": false,
-              "cardinality": "Single"
-            },
-            {
-              "name": "productId",
-              "type": "String",
-              "example": "",
-              "mapping": "",
-              "optional": false,
-              "cardinality": "Single"
-            }
-          ],
-          "type": "READMODEL",
-          "description": "",
-          "aggregateDependencies": [
-            "Inventory"
-          ],
-          "dependencies": [
-            {
-              "id": "3458764596395903754",
-              "type": "OUTBOUND",
-              "title": "title",
-              "elementType": "SCREEN"
-            },
-            {
-              "id": "3458764596395403355",
-              "type": "INBOUND",
-              "title": "Inventory Changed",
-              "elementType": "EVENT"
-            }
-          ],
-          "listElement": false,
-          "apiEndpoint": ""
-        }
-      ],
-      "screens": [
-        {
-          "id": "3458764596395903754",
-          "slice": "slice: Inventories",
-          "title": "title",
-          "fields": [
-            {
-              "name": "inventory",
-              "type": "Int",
-              "example": "",
-              "mapping": "",
-              "optional": false,
-              "cardinality": "Single"
-            },
-            {
-              "name": "productId",
-              "type": "String",
-              "example": "",
-              "mapping": "",
-              "optional": false,
-              "cardinality": "Single"
-            }
-          ],
-          "type": "SCREEN",
-          "description": "",
-          "aggregateDependencies": [
-            "Inventory"
-          ],
-          "dependencies": [
-            {
-              "id": "3458764596395903488",
-              "type": "INBOUND",
-              "title": "Inventories",
-              "elementType": "READMODEL"
-            }
-          ],
-          "listElement": false,
-          "apiEndpoint": ""
-        }
-      ],
-      "processors": [],
-      "specifications": [
-        {
-          "sliceName": "slice: Inventories",
-          "title": "spec:  Inventories",
-          "given": [
-            {
-              "title": "Inventory Changed",
-              "id": "3458764597266169274",
-              "index": 0,
-              "type": "SPEC_EVENT",
-              "fields": [
-                {
-                  "name": "inventory",
-                  "type": "Int",
-                  "example": "",
-                  "mapping": "",
-                  "optional": false,
-                  "cardinality": "Single"
-                },
-                {
-                  "name": "productId",
-                  "type": "UUID",
-                  "example": "",
-                  "mapping": "",
-                  "optional": false,
-                  "cardinality": "Single"
-                }
-              ],
-              "linkedId": "3458764596395403355"
-            }
-          ],
-          "when": [],
-          "then": [
-            {
-              "title": "Inventories",
-              "id": "3458764597266169275",
-              "index": 0,
-              "type": "SPEC_READMODEL",
-              "fields": [
-                {
-                  "name": "inventory",
-                  "type": "Int",
-                  "example": "",
-                  "mapping": "",
-                  "optional": false,
-                  "cardinality": "Single"
-                },
-                {
-                  "name": "productId",
-                  "type": "String",
-                  "example": "",
-                  "mapping": "",
-                  "optional": false,
-                  "cardinality": "Single"
-                }
-              ],
-              "linkedId": "3458764596395903488"
-            }
-          ]
-        }
-      ],
-      "actors": [],
-      "aggregates": [
-        "Inventory"
       ]
     },
     {
@@ -4517,5 +4593,5 @@
     "contextPackage": ""
   },
   "boardId": "uXjVKvTN_NQ=",
-  "token": "b18de67c524442195395be52277cb65165b108f21fd2409ed4b9cbf19e2eb9e3"
+  "token": "283e16fb03f2457030c9208407f93f71a73cba4e517c11a4ca5aa07067c5c500"
 }
