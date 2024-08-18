@@ -1,5 +1,6 @@
 package de.eventsourcingbook.cart.changeprice.internal
 
+import java.math.BigDecimal
 import java.util.*
 import mu.KotlinLogging
 import org.springframework.kafka.core.KafkaTemplate
@@ -7,7 +8,6 @@ import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import java.math.BigDecimal
 
 @RestController
 class PriceChangeKafkaDebugResource(

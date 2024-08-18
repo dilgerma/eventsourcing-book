@@ -17,29 +17,31 @@ import org.testcontainers.utility.DockerImageName
 @DirtiesContext
 abstract class BaseIntegrationTest {
 
-    companion object {
-        @org.testcontainers.junit.jupiter.Container
-        private val postgres = PostgreSQLContainer(DockerImageName.parse("postgres")).withReuse(true)
+  companion object {
+    @org.testcontainers.junit.jupiter.Container
+    private val postgres = PostgreSQLContainer(DockerImageName.parse("postgres")).withReuse(true)
 
-      @ServiceConnection
-        @org.testcontainers.junit.jupiter.Container
-        private val kafkaContainer = KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka"))
+    @ServiceConnection
+    @org.testcontainers.junit.jupiter.Container
+    private val kafkaContainer =
+        KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka"))
             .withExposedPorts(9092)
             .withExposedPorts(9093)
+            .withReuse(true)
 
-        @JvmStatic
-        @DynamicPropertySource
-        fun properties(registry: DynamicPropertyRegistry) {
-            registry.add("spring.datasource.url") { postgres.jdbcUrl }
-            registry.add("spring.flyway.url") { postgres.jdbcUrl }
-            registry.add("spring.datasource.username") { "test" }
-            registry.add("spring.datasource.password") { "test" }
-            registry.add("spring.flyway.user") { "test" }
-            registry.add("spring.flyway.password") { "test" }
-        }
+    @JvmStatic
+    @DynamicPropertySource
+    fun properties(registry: DynamicPropertyRegistry) {
+      registry.add("spring.datasource.url") { postgres.jdbcUrl }
+      registry.add("spring.flyway.url") { postgres.jdbcUrl }
+      registry.add("spring.datasource.username") { "test" }
+      registry.add("spring.datasource.password") { "test" }
+      registry.add("spring.flyway.user") { "test" }
+      registry.add("spring.flyway.password") { "test" }
     }
+  }
 }
 
 fun awaitUntilAssserted(fn: () -> Unit) {
-    Awaitility.await().pollInSameThread().atMost(Duration.ofSeconds(15)).untilAsserted { fn() }
+  Awaitility.await().pollInSameThread().atMost(Duration.ofSeconds(15)).untilAsserted { fn() }
 }
