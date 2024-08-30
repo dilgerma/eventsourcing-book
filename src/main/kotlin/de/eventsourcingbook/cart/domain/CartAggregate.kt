@@ -16,7 +16,6 @@ import org.axonframework.modelling.command.CreationPolicy
 import org.axonframework.spring.stereotype.Aggregate
 
 typealias CartItemId = UUID
-
 typealias ProductId = UUID
 
 @Aggregate
@@ -83,15 +82,19 @@ class CartAggregate {
     this.cartItems.clear()
   }
 
-  @CommandHandler
-  fun handle(command: ArchiveItemCommand) {
-    cartItems.entries
-        .find { it.value == command.productId }
-        ?.let { AggregateLifecycle.apply(ItemArchivedEvent(command.aggregateId, it.key)) }
+@CommandHandler
+fun handle(command: ArchiveItemCommand) {
+  cartItems.entries.find { it.value == command.productId }?.let {
+    AggregateLifecycle.apply(
+      ItemArchivedEvent(command.aggregateId,
+        it.key)
+    )
   }
+}
 
-  @EventSourcingHandler
-  fun on(event: ItemArchivedEvent) {
-    this.cartItems.remove(event.itemId)
-  }
+@EventSourcingHandler
+fun on(event: ItemArchivedEvent) {
+  this.cartItems.remove(event.itemId)
+}
+
 }
