@@ -35,6 +35,10 @@ axon:
     general: jackson
   axonserver:
     enabled: false
+  eventhandling:
+    processors:
+      cart-with-products:
+        mode: subscribing
 
 application:
   debug:

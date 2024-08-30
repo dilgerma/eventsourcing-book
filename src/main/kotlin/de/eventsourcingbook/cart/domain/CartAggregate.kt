@@ -2,12 +2,10 @@ package de.eventsourcingbook.cart.domain
 
 import de.eventsourcingbook.cart.common.CommandException
 import de.eventsourcingbook.cart.domain.commands.additem.AddItemCommand
+import de.eventsourcingbook.cart.domain.commands.archiveitem.ArchiveItemCommand
 import de.eventsourcingbook.cart.domain.commands.clearcart.ClearCartCommand
 import de.eventsourcingbook.cart.domain.commands.removeitem.RemoveItemCommand
-import de.eventsourcingbook.cart.events.CartClearedEvent
-import de.eventsourcingbook.cart.events.CartCreatedEvent
-import de.eventsourcingbook.cart.events.ItemAddedEvent
-import de.eventsourcingbook.cart.events.ItemRemovedEvent
+import de.eventsourcingbook.cart.events.*
 import java.util.UUID
 import org.axonframework.commandhandling.CommandHandler
 import org.axonframework.eventsourcing.EventSourcingHandler
@@ -17,12 +15,16 @@ import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.modelling.command.CreationPolicy
 import org.axonframework.spring.stereotype.Aggregate
 
+typealias CartItemId = UUID
+
+typealias ProductId = UUID
+
 @Aggregate
 class CartAggregate {
 
   @AggregateIdentifier var aggregateId: UUID? = null
 
-  val cartItems = mutableListOf<UUID>()
+  val cartItems = mutableMapOf<CartItemId, ProductId>()
 
   // Add Item
   @CommandHandler
@@ -51,7 +53,7 @@ class CartAggregate {
 
   @EventSourcingHandler
   fun on(event: ItemAddedEvent) {
-    this.cartItems.add(event.itemId)
+    this.cartItems[event.itemId] = event.productId
   }
 
   // Remove Item
@@ -79,5 +81,17 @@ class CartAggregate {
   @EventSourcingHandler
   fun on(event: CartClearedEvent) {
     this.cartItems.clear()
+  }
+
+  @CommandHandler
+  fun handle(command: ArchiveItemCommand) {
+    cartItems.entries
+        .find { it.value == command.productId }
+        ?.let { AggregateLifecycle.apply(ItemArchivedEvent(command.aggregateId, it.key)) }
+  }
+
+  @EventSourcingHandler
+  fun on(event: ItemArchivedEvent) {
+    this.cartItems.remove(event.itemId)
   }
 }
