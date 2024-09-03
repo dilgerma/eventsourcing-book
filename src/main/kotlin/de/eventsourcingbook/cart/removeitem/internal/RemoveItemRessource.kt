@@ -18,24 +18,25 @@ data class RemoveItemPayload(var aggregateId: UUID, var itemId: UUID)
 @RestController
 class RemoveItemRessource(private var commandGateway: CommandGateway) {
 
-  var logger = KotlinLogging.logger {}
+    var logger = KotlinLogging.logger {}
 
-  @CrossOrigin
-  @PostMapping("/debug/removeitem")
-  fun processDebugCommand(
-      @RequestParam aggregateId: UUID,
-      @RequestParam itemId: UUID
-  ): CompletableFuture<CommandResult> {
-    return commandGateway.send(RemoveItemCommand(aggregateId, itemId))
-  }
+    @CrossOrigin
+    @PostMapping("/debug/removeitem")
+    fun processDebugCommand(
+        @RequestParam aggregateId: UUID,
+        @RequestParam itemId: UUID
+    ): CompletableFuture<CommandResult> {
+        return commandGateway.send(RemoveItemCommand(aggregateId, itemId))
+    }
 
-  @CrossOrigin
-  @PostMapping("/removeitem/{aggregateId}")
-  fun processCommand(
-      @PathVariable("aggregateId") aggregateId: UUID,
-      @RequestBody payload: RemoveItemPayload
-  ): CompletableFuture<CommandResult> {
-    return commandGateway.send(
-        RemoveItemCommand(aggregateId = payload.aggregateId, itemId = payload.itemId))
-  }
+    @CrossOrigin
+    @PostMapping("/removeitem/{aggregateId}")
+    fun processCommand(
+        @PathVariable("aggregateId") aggregateId: UUID,
+        @RequestBody payload: RemoveItemPayload
+    ): CompletableFuture<CommandResult> {
+        return commandGateway.send(
+            RemoveItemCommand(aggregateId = payload.aggregateId, itemId = payload.itemId)
+        )
+    }
 }

@@ -17,13 +17,13 @@ import org.axonframework.modelling.command.CreationPolicy
 import org.axonframework.spring.stereotype.Aggregate
 
 typealias CartItemId = UUID
+
 typealias ProductId = UUID
 
 @Aggregate
 class CartAggregate {
 
-    @AggregateIdentifier
-    var aggregateId: UUID? = null
+    @AggregateIdentifier var aggregateId: UUID? = null
 
     val cartItems = mutableMapOf<CartItemId, ProductId>()
     var productPrice = mutableMapOf<ProductId, Double>()
@@ -93,14 +93,9 @@ class CartAggregate {
 
     @CommandHandler
     fun handle(command: ArchiveItemCommand) {
-        cartItems.entries.find { it.value == command.productId }?.let {
-            AggregateLifecycle.apply(
-                ItemArchivedEvent(
-                    command.aggregateId,
-                    it.key
-                )
-            )
-        }
+        cartItems.entries
+            .find { it.value == command.productId }
+            ?.let { AggregateLifecycle.apply(ItemArchivedEvent(command.aggregateId, it.key)) }
     }
 
     @EventSourcingHandler
@@ -118,9 +113,12 @@ class CartAggregate {
         if (submitted) {
             throw CommandException("cannot submit a cart twice")
         }
-        AggregateLifecycle.apply(CartSubmittedEvent(command.aggregateId,
-            cartItems.map { OrderedProduct(it.value, productPrice[it.value]!!) },
-            cartItems.map { productPrice[it.value]!! }.sumOf { it })
+        AggregateLifecycle.apply(
+            CartSubmittedEvent(
+                command.aggregateId,
+                cartItems.map { OrderedProduct(it.value, productPrice[it.value]!!) },
+                cartItems.map { productPrice[it.value]!! }.sumOf { it }
+            )
         )
     }
 

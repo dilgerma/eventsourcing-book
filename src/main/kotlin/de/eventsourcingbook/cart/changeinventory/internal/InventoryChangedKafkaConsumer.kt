@@ -8,12 +8,13 @@ import org.springframework.stereotype.Component
 @Component
 class InventoryChangedKafkaConsumer(var commandGateway: CommandGateway) {
 
-  @KafkaListener(topics = ["inventories"])
-  fun handle(externalInventoryChangedEvent: ExternalInventoryChangedEvent) {
-    commandGateway.send<ChangeInventoryCommand>(
-        ChangeInventoryCommand(
-            externalInventoryChangedEvent.productId,
-            externalInventoryChangedEvent.inventory,
-        ))
-  }
+    @KafkaListener(topics = ["inventories"])
+    fun handle(externalInventoryChangedEvent: ExternalInventoryChangedEvent) {
+        commandGateway.send<ChangeInventoryCommand>(
+            ChangeInventoryCommand(
+                externalInventoryChangedEvent.productId,
+                externalInventoryChangedEvent.inventory,
+            )
+        )
+    }
 }

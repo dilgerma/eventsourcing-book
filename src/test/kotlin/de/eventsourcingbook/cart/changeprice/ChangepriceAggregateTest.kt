@@ -12,39 +12,41 @@ import org.junit.jupiter.api.Test
 
 class ChangepriceAggregateTest {
 
-  private lateinit var fixture: FixtureConfiguration<PricingAggregate>
+    private lateinit var fixture: FixtureConfiguration<PricingAggregate>
 
-  @BeforeEach
-  fun setUp() {
-    fixture = AggregateTestFixture(PricingAggregate::class.java)
-  }
+    @BeforeEach
+    fun setUp() {
+        fixture = AggregateTestFixture(PricingAggregate::class.java)
+    }
 
-  @Test
-  fun `ChangepriceAggregateTest`() {
-    // GIVEN
-    val events = mutableListOf<Event>()
+    @Test
+    fun `ChangepriceAggregateTest`() {
+        // GIVEN
+        val events = mutableListOf<Event>()
 
-    // WHEN
-    val command =
-        ChangePriceCommand(
-            newPrice = RandomData.newInstance {},
-            oldPrice = RandomData.newInstance {},
-            productId = RandomData.newInstance {})
+        // WHEN
+        val command =
+            ChangePriceCommand(
+                newPrice = RandomData.newInstance {},
+                oldPrice = RandomData.newInstance {},
+                productId = RandomData.newInstance {}
+            )
 
-    // THEN
-    val expectedEvents = mutableListOf<Event>()
+        // THEN
+        val expectedEvents = mutableListOf<Event>()
 
-    expectedEvents.add(
-        RandomData.newInstance<PriceChangedEvent> {
-          this.newPrice = command.newPrice
-          this.oldPrice = command.oldPrice
-          this.productId = command.productId
-        })
+        expectedEvents.add(
+            RandomData.newInstance<PriceChangedEvent> {
+                this.newPrice = command.newPrice
+                this.oldPrice = command.oldPrice
+                this.productId = command.productId
+            }
+        )
 
-    fixture
-        .given(events)
-        .`when`(command)
-        .expectSuccessfulHandlerExecution()
-        .expectEvents(*expectedEvents.toTypedArray())
-  }
+        fixture
+            .given(events)
+            .`when`(command)
+            .expectSuccessfulHandlerExecution()
+            .expectEvents(*expectedEvents.toTypedArray())
+    }
 }

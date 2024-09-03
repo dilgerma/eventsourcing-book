@@ -16,38 +16,42 @@ import org.junit.jupiter.api.Test
 
 class RemoveitemwhichwasalreadyremovedAggregateTest {
 
-  private lateinit var fixture: FixtureConfiguration<CartAggregate>
+    private lateinit var fixture: FixtureConfiguration<CartAggregate>
 
-  @BeforeEach
-  fun setUp() {
-    fixture = AggregateTestFixture(CartAggregate::class.java)
-  }
+    @BeforeEach
+    fun setUp() {
+        fixture = AggregateTestFixture(CartAggregate::class.java)
+    }
 
-  @Test
-  fun `RemoveitemwhichwasalreadyremovedAggregateTest`() {
-    // GIVEN
-    val events = mutableListOf<Event>()
-    val itemId = UUID.randomUUID()
+    @Test
+    fun `RemoveitemwhichwasalreadyremovedAggregateTest`() {
+        // GIVEN
+        val events = mutableListOf<Event>()
+        val itemId = UUID.randomUUID()
 
-    events.add(
-        RandomData.newInstance<CartCreatedEvent> {
-          aggregateId = UUID.fromString("a58f246d-86dc-4145-a609-23fce5215cd5")
-        })
-    events.add(RandomData.newInstance<ItemAddedEvent> { this.itemId = itemId })
-    events.add(
-        RandomData.newInstance<ItemRemovedEvent> {
-          aggregateId = UUID.fromString("a58f246d-86dc-4145-a609-23fce5215cd5")
-          this.itemId = itemId
-        })
+        events.add(
+            RandomData.newInstance<CartCreatedEvent> {
+                aggregateId = UUID.fromString("a58f246d-86dc-4145-a609-23fce5215cd5")
+            }
+        )
+        events.add(RandomData.newInstance<ItemAddedEvent> { this.itemId = itemId })
+        events.add(
+            RandomData.newInstance<ItemRemovedEvent> {
+                aggregateId = UUID.fromString("a58f246d-86dc-4145-a609-23fce5215cd5")
+                this.itemId = itemId
+            }
+        )
 
-    // WHEN
-    val command =
-        RemoveItemCommand(
-            aggregateId = UUID.fromString("a58f246d-86dc-4145-a609-23fce5215cd5"), itemId = itemId)
+        // WHEN
+        val command =
+            RemoveItemCommand(
+                aggregateId = UUID.fromString("a58f246d-86dc-4145-a609-23fce5215cd5"),
+                itemId = itemId
+            )
 
-    // THEN
-    val expectedEvents = mutableListOf<Event>()
+        // THEN
+        val expectedEvents = mutableListOf<Event>()
 
-    fixture.given(events).`when`(command).expectException(CommandException::class.java)
-  }
+        fixture.given(events).`when`(command).expectException(CommandException::class.java)
+    }
 }

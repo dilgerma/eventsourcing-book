@@ -14,17 +14,18 @@ import org.axonframework.spring.stereotype.Aggregate
 @Aggregate
 class PricingAggregate {
 
-  @AggregateIdentifier lateinit var aggregateId: UUID
+    @AggregateIdentifier lateinit var aggregateId: UUID
 
-  @CreationPolicy(AggregateCreationPolicy.CREATE_IF_MISSING)
-  @CommandHandler
-  fun handle(command: ChangePriceCommand) {
-    AggregateLifecycle.apply(
-        PriceChangedEvent(command.productId, command.newPrice, command.oldPrice))
-  }
+    @CreationPolicy(AggregateCreationPolicy.CREATE_IF_MISSING)
+    @CommandHandler
+    fun handle(command: ChangePriceCommand) {
+        AggregateLifecycle.apply(
+            PriceChangedEvent(command.productId, command.newPrice, command.oldPrice)
+        )
+    }
 
-  @EventSourcingHandler
-  fun on(event: PriceChangedEvent) {
-    this.aggregateId = event.productId
-  }
+    @EventSourcingHandler
+    fun on(event: PriceChangedEvent) {
+        this.aggregateId = event.productId
+    }
 }

@@ -10,8 +10,8 @@ class CartsWithProductsReadModelQueryHandler(
     private val repository: CartsWithProductsReadModelRepository
 ) {
 
-  @QueryHandler
-  fun handleQuery(query: CartsWithProductsReadModelQuery): CartsWithProductsReadModel? {
-    return CartsWithProductsReadModel(repository.findByProductId(query.productId))
-  }
+    @QueryHandler
+    fun handleQuery(query: CartsWithProductsReadModelQuery): CartsWithProductsReadModel? {
+        return CartsWithProductsReadModel(repository.findByProductId(query.productId))
+    }
 }

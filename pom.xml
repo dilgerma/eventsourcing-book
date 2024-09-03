@@ -232,12 +232,15 @@
                 </executions>
                 <configuration>
                     <kotlin>
+                        <ktfmt>
+                            <version>0.46</version> <!-- optional -->
+                            <style>KOTLINLANG</style> <!-- optional, options are META (default), GOOGLE and KOTLINLANG -->
+                        </ktfmt>
                         <!-- These are the defaults, you can override if you want -->
                         <includes>
                             <include>src/main/kotlin/**/*.kt</include>
                             <include>src/test/kotlin/**/*.kt</include>
                         </includes>
-                        <ktfmt/>
                     </kotlin>
                 </configuration>
             </plugin>

@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component
 @Component
 class InventoriesReadModelQueryHandler(private val repository: InventoriesReadModelRepository) {
 
-  @QueryHandler
-  fun handleQuery(query: InventoriesReadModelQuery): InventoriesReadModel? {
+    @QueryHandler
+    fun handleQuery(query: InventoriesReadModelQuery): InventoriesReadModel? {
 
-    if (!repository.existsById(query.productId)) {
-      return null
+        if (!repository.existsById(query.productId)) {
+            return null
+        }
+        return InventoriesReadModel(repository.findById(query.productId).get())
     }
-    return InventoriesReadModel(repository.findById(query.productId).get())
-  }
 }

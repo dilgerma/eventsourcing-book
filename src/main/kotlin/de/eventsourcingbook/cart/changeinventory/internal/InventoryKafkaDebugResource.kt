@@ -13,14 +13,14 @@ class InventoryKafkaDebugResource(
     private var kafkaTemplate: KafkaTemplate<String, ExternalInventoryChangedEvent>
 ) {
 
-  var logger = KotlinLogging.logger {}
+    var logger = KotlinLogging.logger {}
 
-  @CrossOrigin
-  @PostMapping("/debug/external/changeinventory")
-  fun processDebugCommand(
-      @RequestParam productId: UUID,
-      @RequestParam inventory: Int,
-  ) {
-    kafkaTemplate.send("inventories", ExternalInventoryChangedEvent(productId, inventory))
-  }
+    @CrossOrigin
+    @PostMapping("/debug/external/changeinventory")
+    fun processDebugCommand(
+        @RequestParam productId: UUID,
+        @RequestParam inventory: Int,
+    ) {
+        kafkaTemplate.send("inventories", ExternalInventoryChangedEvent(productId, inventory))
+    }
 }

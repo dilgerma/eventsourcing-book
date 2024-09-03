@@ -16,24 +16,28 @@ import org.springframework.beans.factory.annotation.Autowired
 
 class CartitemsReadModelTest : BaseIntegrationTest() {
 
-  @Autowired private lateinit var commandGateway: CommandGateway
+    @Autowired private lateinit var commandGateway: CommandGateway
 
-  @Autowired private lateinit var queryGateway: QueryGateway
+    @Autowired private lateinit var queryGateway: QueryGateway
 
-  @Test
-  fun `CartitemsReadModelTest`() {
+    @Test
+    fun `CartitemsReadModelTest`() {
 
-    val aggregateId = UUID.randomUUID()
+        val aggregateId = UUID.randomUUID()
 
-    var addItemCommand = RandomData.newInstance<AddItemCommand> { this.aggregateId = aggregateId }
+        var addItemCommand =
+            RandomData.newInstance<AddItemCommand> { this.aggregateId = aggregateId }
 
-    var addItemCommandResult = commandGateway.sendAndWait<CommandResult>(addItemCommand)
+        var addItemCommandResult = commandGateway.sendAndWait<CommandResult>(addItemCommand)
 
-    awaitUntilAssserted {
-      var readModel =
-          queryGateway.query(CartItemsReadModelQuery(aggregateId), CartItemsReadModel::class.java)
-      // TODO add assertions
-      assertThat(readModel.get().data).isNotEmpty
+        awaitUntilAssserted {
+            var readModel =
+                queryGateway.query(
+                    CartItemsReadModelQuery(aggregateId),
+                    CartItemsReadModel::class.java
+                )
+            // TODO add assertions
+            assertThat(readModel.get().data).isNotEmpty
+        }
     }
-  }
 }

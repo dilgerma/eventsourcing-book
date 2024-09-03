@@ -2,9 +2,7 @@ package de.eventsourcingbook.cart.cartwithproducts
 
 import de.eventsourcingbook.cart.common.NoArg
 import jakarta.persistence.*
-import java.sql.Types
 import java.util.UUID
-import org.hibernate.annotations.JdbcTypeCode
 
 class CartsWithProductsReadModelQuery(val productId: UUID)
 
@@ -18,8 +16,8 @@ data class CartProduct(
 @Entity
 class CartsWithProductsReadModelEntity {
 
-  @Column(name = "aggregateId") @Id lateinit var aggregateId: UUID
-  @Column(name = "productId") @Id lateinit var productId: UUID
+    @Column(name = "aggregateId") @Id lateinit var aggregateId: UUID
+    @Column(name = "productId") @Id lateinit var productId: UUID
 }
 
 data class CartsWithProductsReadModel(val data: List<CartsWithProductsReadModelEntity>)

@@ -15,41 +15,44 @@ import org.junit.jupiter.api.Test
 
 class ClearcartAggregateTest {
 
-  private lateinit var fixture: FixtureConfiguration<CartAggregate>
+    private lateinit var fixture: FixtureConfiguration<CartAggregate>
 
-  @BeforeEach
-  fun setUp() {
-    fixture = AggregateTestFixture(CartAggregate::class.java)
-  }
+    @BeforeEach
+    fun setUp() {
+        fixture = AggregateTestFixture(CartAggregate::class.java)
+    }
 
-  @Test
-  fun `ClearcartAggregateTest`() {
-    // GIVEN
-    val events = mutableListOf<Event>()
+    @Test
+    fun `ClearcartAggregateTest`() {
+        // GIVEN
+        val events = mutableListOf<Event>()
 
-    events.add(
-        RandomData.newInstance<CartCreatedEvent> {
-          aggregateId = UUID.fromString("e94adda2-d1fe-4fd6-9f57-9663ba4a831a")
-        })
-    events.add(
-        RandomData.newInstance<ItemAddedEvent> {
-          aggregateId = UUID.fromString("e94adda2-d1fe-4fd6-9f57-9663ba4a831a")
-        })
+        events.add(
+            RandomData.newInstance<CartCreatedEvent> {
+                aggregateId = UUID.fromString("e94adda2-d1fe-4fd6-9f57-9663ba4a831a")
+            }
+        )
+        events.add(
+            RandomData.newInstance<ItemAddedEvent> {
+                aggregateId = UUID.fromString("e94adda2-d1fe-4fd6-9f57-9663ba4a831a")
+            }
+        )
 
-    // WHEN
-    val command =
-        ClearCartCommand(aggregateId = UUID.fromString("e94adda2-d1fe-4fd6-9f57-9663ba4a831a"))
+        // WHEN
+        val command =
+            ClearCartCommand(aggregateId = UUID.fromString("e94adda2-d1fe-4fd6-9f57-9663ba4a831a"))
 
-    // THEN
-    val expectedEvents = mutableListOf<Event>()
+        // THEN
+        val expectedEvents = mutableListOf<Event>()
 
-    expectedEvents.add(
-        RandomData.newInstance<CartClearedEvent> { this.aggregateId = command.aggregateId })
+        expectedEvents.add(
+            RandomData.newInstance<CartClearedEvent> { this.aggregateId = command.aggregateId }
+        )
 
-    fixture
-        .given(events)
-        .`when`(command)
-        .expectSuccessfulHandlerExecution()
-        .expectEvents(*expectedEvents.toTypedArray())
-  }
+        fixture
+            .given(events)
+            .`when`(command)
+            .expectSuccessfulHandlerExecution()
+            .expectEvents(*expectedEvents.toTypedArray())
+    }
 }

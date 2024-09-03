@@ -14,14 +14,14 @@ interface InventoriesReadModelRepository : JpaRepository<InventoriesReadModelEnt
 @Component
 class InventoriesReadModelProjector(var repository: InventoriesReadModelRepository) {
 
-  @EventHandler
-  fun on(event: InventoryChangedEvent) {
-    val entity = this.repository.findById(event.productId).orElse(InventoriesReadModelEntity())
-    entity
-        .apply {
-          inventory = event.inventory
-          productId = event.productId
-        }
-        .also { this.repository.save(it) }
-  }
+    @EventHandler
+    fun on(event: InventoryChangedEvent) {
+        val entity = this.repository.findById(event.productId).orElse(InventoriesReadModelEntity())
+        entity
+            .apply {
+                inventory = event.inventory
+                productId = event.productId
+            }
+            .also { this.repository.save(it) }
+    }
 }
