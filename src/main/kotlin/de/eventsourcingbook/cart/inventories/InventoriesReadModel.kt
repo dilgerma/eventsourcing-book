@@ -11,9 +11,9 @@ data class InventoriesReadModelQuery(val productId: UUID)
 
 @Entity
 class InventoriesReadModelEntity {
-  @Id @JdbcTypeCode(Types.VARCHAR) @Column(name = "productId") var productId: UUID? = null
+    @Id @JdbcTypeCode(Types.VARCHAR) @Column(name = "productId") var productId: UUID? = null
 
-  @Column(name = "inventory") var inventory: Int? = null
+    @Column(name = "inventory") var inventory: Int? = null
 }
 
 data class InventoriesReadModel(val data: InventoriesReadModelEntity)

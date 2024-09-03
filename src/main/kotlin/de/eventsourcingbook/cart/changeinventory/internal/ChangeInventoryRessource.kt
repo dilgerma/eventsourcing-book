@@ -18,31 +18,33 @@ data class ChangeInventoryPayload(var inventory: Int, var productId: UUID)
 @RestController
 class ChangeInventoryRessource(private var commandGateway: CommandGateway) {
 
-  var logger = KotlinLogging.logger {}
+    var logger = KotlinLogging.logger {}
 
-  @CrossOrigin
-  @PostMapping("/debug/changeinventory")
-  fun processDebugCommand(
-      @RequestParam productId: UUID,
-      @RequestParam inventory: Int,
-  ): CompletableFuture<CommandResult> {
-    return commandGateway.send(
-        ChangeInventoryCommand(
-            productId,
-            inventory,
-        ))
-  }
+    @CrossOrigin
+    @PostMapping("/debug/changeinventory")
+    fun processDebugCommand(
+        @RequestParam productId: UUID,
+        @RequestParam inventory: Int,
+    ): CompletableFuture<CommandResult> {
+        return commandGateway.send(
+            ChangeInventoryCommand(
+                productId,
+                inventory,
+            )
+        )
+    }
 
-  @CrossOrigin
-  @PostMapping("/changeinventory/{aggregateId}")
-  fun processCommand(
-      @PathVariable("aggregateId") aggregateId: UUID,
-      @RequestBody payload: ChangeInventoryPayload
-  ): CompletableFuture<CommandResult> {
-    return commandGateway.send(
-        ChangeInventoryCommand(
-            productId = payload.productId,
-            inventory = payload.inventory,
-        ))
-  }
+    @CrossOrigin
+    @PostMapping("/changeinventory/{aggregateId}")
+    fun processCommand(
+        @PathVariable("aggregateId") aggregateId: UUID,
+        @RequestBody payload: ChangeInventoryPayload
+    ): CompletableFuture<CommandResult> {
+        return commandGateway.send(
+            ChangeInventoryCommand(
+                productId = payload.productId,
+                inventory = payload.inventory,
+            )
+        )
+    }
 }

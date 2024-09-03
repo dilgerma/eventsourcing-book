@@ -25,52 +25,53 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean
 
 @Configuration
 class ValidatorConfig {
-  @Bean
-  fun localValidatorFactoryBean(): LocalValidatorFactoryBean {
-    return LocalValidatorFactoryBean()
-  }
+    @Bean
+    fun localValidatorFactoryBean(): LocalValidatorFactoryBean {
+        return LocalValidatorFactoryBean()
+    }
 }
 
 @Configuration
 class ValidationConfig {
-  @Bean
-  fun beanValidationInterceptor(
-      validatorFactory: LocalValidatorFactoryBean
-  ): BeanValidationInterceptor<*> {
-    return BeanValidationInterceptor<CommandMessage<*>>(validatorFactory)
-  }
+    @Bean
+    fun beanValidationInterceptor(
+        validatorFactory: LocalValidatorFactoryBean
+    ): BeanValidationInterceptor<*> {
+        return BeanValidationInterceptor<CommandMessage<*>>(validatorFactory)
+    }
 }
 
 @Configuration
 class AxonConfig {
 
-  val logger = KotlinLogging.logger {}
+    val logger = KotlinLogging.logger {}
 
-  @Autowired
-  fun configurationEventHandling(config: EventProcessingConfigurer) {
-    config.registerDefaultListenerInvocationErrorHandler { PropagatingErrorHandler.instance() }
+    @Autowired
+    fun configurationEventHandling(config: EventProcessingConfigurer) {
+        config.registerDefaultListenerInvocationErrorHandler { PropagatingErrorHandler.instance() }
 
-    config.registerListenerInvocationErrorHandler("inventories") { LoggingErrorHandler() }
-  }
+        config.registerListenerInvocationErrorHandler("inventories") { LoggingErrorHandler() }
+    }
 
-  @Bean
-  fun commandGateway(
-      commandBus: CommandBus?,
-      dispatchInterceptors: List<MessageDispatchInterceptor<CommandMessage<*>>>,
-      handlerInterceptor: List<MessageHandlerInterceptor<CommandMessage<*>>>
-  ): CommandGateway {
-    handlerInterceptor.forEach { it -> commandBus?.registerHandlerInterceptor(it) }
-    return DefaultCommandGateway.builder()
-        .commandBus(commandBus!!)
-        .dispatchInterceptors(*dispatchInterceptors.toTypedArray())
-        .build()
-  }
+    @Bean
+    fun commandGateway(
+        commandBus: CommandBus?,
+        dispatchInterceptors: List<MessageDispatchInterceptor<CommandMessage<*>>>,
+        handlerInterceptor: List<MessageHandlerInterceptor<CommandMessage<*>>>
+    ): CommandGateway {
+        handlerInterceptor.forEach { it -> commandBus?.registerHandlerInterceptor(it) }
+        return DefaultCommandGateway.builder()
+            .commandBus(commandBus!!)
+            .dispatchInterceptors(*dispatchInterceptors.toTypedArray())
+            .build()
+    }
 }
 
 @Modulith(
     systemName = "System",
     sharedModules = ["de.eventsourcingbook.cart.common", "de.eventsourcingbook.cart.domain"],
-    useFullyQualifiedModuleNames = true)
+    useFullyQualifiedModuleNames = true
+)
 @EnableJpaRepositories
 @SpringBootApplication
 @EnableScheduling
@@ -81,16 +82,18 @@ class AxonConfig {
             "org.springframework.modulith.events.jpa",
             "org.axonframework.eventhandling.tokenstore",
             "org.axonframework.eventsourcing.eventstore.jpa",
-            "org.axonframework.modelling.saga.repository.jpa"])
+            "org.axonframework.modelling.saga.repository.jpa"
+        ]
+)
 @EnableKafka
 class SpringApp {
-  companion object {
-    fun main(args: Array<String>) {
-      runApplication<SpringApp>(*args)
+    companion object {
+        fun main(args: Array<String>) {
+            runApplication<SpringApp>(*args)
+        }
     }
-  }
 }
 
 fun main(args: Array<String>) {
-  runApplication<SpringApp>(*args)
+    runApplication<SpringApp>(*args)
 }

@@ -15,67 +15,73 @@ import org.junit.jupiter.api.Test
 
 class Max3itemspercartAggregateTest {
 
-  private lateinit var fixture: FixtureConfiguration<CartAggregate>
+    private lateinit var fixture: FixtureConfiguration<CartAggregate>
 
-  @BeforeEach
-  fun setUp() {
-    fixture = AggregateTestFixture(CartAggregate::class.java)
-  }
+    @BeforeEach
+    fun setUp() {
+        fixture = AggregateTestFixture(CartAggregate::class.java)
+    }
 
-  @Test
-  fun `Max3itemspercartAggregateTest`() {
-    // GIVEN
-    val events = mutableListOf<Event>()
+    @Test
+    fun `Max3itemspercartAggregateTest`() {
+        // GIVEN
+        val events = mutableListOf<Event>()
 
-    events.add(
-        RandomData.newInstance<CartCreatedEvent> {
-          aggregateId = UUID.fromString("f9602c89-46e3-4202-ac78-efd39339321b")
-        })
-    events.add(
-        RandomData.newInstance<ItemAddedEvent> {
-          aggregateId = UUID.fromString("f9602c89-46e3-4202-ac78-efd39339321b")
-          description = RandomData.newInstance {}
-          image = RandomData.newInstance {}
-          price = RandomData.newInstance {}
-          itemId = RandomData.newInstance {}
-          productId = RandomData.newInstance {}
-        })
-    events.add(
-        RandomData.newInstance<ItemAddedEvent> {
-          aggregateId = UUID.fromString("f9602c89-46e3-4202-ac78-efd39339321b")
-          description = RandomData.newInstance {}
-          image = RandomData.newInstance {}
-          price = RandomData.newInstance {}
-          itemId = RandomData.newInstance {}
-          productId = RandomData.newInstance {}
-        })
-    events.add(
-        RandomData.newInstance<ItemAddedEvent> {
-          aggregateId = UUID.fromString("f9602c89-46e3-4202-ac78-efd39339321b")
-          description = RandomData.newInstance {}
-          image = RandomData.newInstance {}
-          price = RandomData.newInstance {}
-          itemId = RandomData.newInstance {}
-          productId = RandomData.newInstance {}
-        })
+        events.add(
+            RandomData.newInstance<CartCreatedEvent> {
+                aggregateId = UUID.fromString("f9602c89-46e3-4202-ac78-efd39339321b")
+            }
+        )
+        events.add(
+            RandomData.newInstance<ItemAddedEvent> {
+                aggregateId = UUID.fromString("f9602c89-46e3-4202-ac78-efd39339321b")
+                description = RandomData.newInstance {}
+                image = RandomData.newInstance {}
+                price = RandomData.newInstance {}
+                itemId = RandomData.newInstance {}
+                productId = RandomData.newInstance {}
+            }
+        )
+        events.add(
+            RandomData.newInstance<ItemAddedEvent> {
+                aggregateId = UUID.fromString("f9602c89-46e3-4202-ac78-efd39339321b")
+                description = RandomData.newInstance {}
+                image = RandomData.newInstance {}
+                price = RandomData.newInstance {}
+                itemId = RandomData.newInstance {}
+                productId = RandomData.newInstance {}
+            }
+        )
+        events.add(
+            RandomData.newInstance<ItemAddedEvent> {
+                aggregateId = UUID.fromString("f9602c89-46e3-4202-ac78-efd39339321b")
+                description = RandomData.newInstance {}
+                image = RandomData.newInstance {}
+                price = RandomData.newInstance {}
+                itemId = RandomData.newInstance {}
+                productId = RandomData.newInstance {}
+            }
+        )
 
-    // WHEN
-    val command =
-        AddItemCommand(
-            aggregateId = UUID.fromString("f9602c89-46e3-4202-ac78-efd39339321b"),
-            description = RandomData.newInstance {},
-            image = RandomData.newInstance {},
-            price = RandomData.newInstance {},
-            totalPrice = RandomData.newInstance {},
-            itemId = RandomData.newInstance {},
-            productId = RandomData.newInstance {})
+        // WHEN
+        val command =
+            AddItemCommand(
+                aggregateId = UUID.fromString("f9602c89-46e3-4202-ac78-efd39339321b"),
+                description = RandomData.newInstance {},
+                image = RandomData.newInstance {},
+                price = RandomData.newInstance {},
+                totalPrice = RandomData.newInstance {},
+                itemId = RandomData.newInstance {},
+                productId = RandomData.newInstance {}
+            )
 
-    // THEN
-    val expectedEvents = mutableListOf<Event>()
+        // THEN
+        val expectedEvents = mutableListOf<Event>()
 
-    expectedEvents.add(
-        RandomData.newInstance<CartCreatedEvent> { this.aggregateId = command.aggregateId })
+        expectedEvents.add(
+            RandomData.newInstance<CartCreatedEvent> { this.aggregateId = command.aggregateId }
+        )
 
-    fixture.given(events).`when`(command).expectException(CommandException::class.java)
-  }
+        fixture.given(events).`when`(command).expectException(CommandException::class.java)
+    }
 }

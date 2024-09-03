@@ -13,22 +13,22 @@ import org.springframework.kafka.core.KafkaTemplate
 
 class ChangepriceProcessorTestIntegration : BaseIntegrationTest() {
 
-  @Autowired private lateinit var kafkaTemplate: KafkaTemplate<String, ExternalPriceChangedEvent>
+    @Autowired private lateinit var kafkaTemplate: KafkaTemplate<String, ExternalPriceChangedEvent>
 
-  @Autowired private lateinit var streamAssertions: StreamAssertions
+    @Autowired private lateinit var streamAssertions: StreamAssertions
 
-  @Test
-  fun `ChangepriceProcessorTest`() {
+    @Test
+    fun `ChangepriceProcessorTest`() {
 
-    val aggregateId = UUID.randomUUID()
-    val oldPrice = BigDecimal.valueOf(25.99)
-    val newPrice = BigDecimal.valueOf(26.99)
+        val aggregateId = UUID.randomUUID()
+        val oldPrice = BigDecimal.valueOf(25.99)
+        val newPrice = BigDecimal.valueOf(26.99)
 
-    awaitUntilAssserted {
-      kafkaTemplate
-          .send("price_changes", ExternalPriceChangedEvent(aggregateId, oldPrice, newPrice))
-          .get()
-      streamAssertions.assertEvent(aggregateId.toString()) { it is PriceChangedEvent }
+        awaitUntilAssserted {
+            kafkaTemplate
+                .send("price_changes", ExternalPriceChangedEvent(aggregateId, oldPrice, newPrice))
+                .get()
+            streamAssertions.assertEvent(aggregateId.toString()) { it is PriceChangedEvent }
+        }
     }
-  }
 }

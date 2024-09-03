@@ -9,12 +9,13 @@ import org.springframework.test.context.TestPropertySource
         [
             "spring.jpa.hibernate.ddl-auto=create-drop",
             "spring.jpa.show-sql=true",
-        ])
+        ]
+)
 @Disabled
 class DbLogTest : BaseIntegrationTest() {
 
-  @Test
-  fun logSqlStatements() {
-    // no-op - just logs sql
-  }
+    @Test
+    fun logSqlStatements() {
+        // no-op - just logs sql
+    }
 }

@@ -3,5 +3,5 @@ package de.eventsourcingbook.cart.common
 import java.util.*
 
 interface Command {
-  var aggregateId: UUID
+    var aggregateId: UUID
 }

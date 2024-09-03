@@ -1,6 +1,5 @@
 package de.eventsourcingbook.cart.archiveitem.integration
 
-import de.eventsourcingbook.cart.common.CommandResult
 import de.eventsourcingbook.cart.common.support.BaseIntegrationTest
 import de.eventsourcingbook.cart.common.support.RandomData
 import de.eventsourcingbook.cart.common.support.StreamAssertions
@@ -11,22 +10,14 @@ import de.eventsourcingbook.cart.events.ItemArchivedEvent
 import java.util.*
 import org.axonframework.commandhandling.gateway.CommandGateway
 import org.junit.jupiter.api.Test
-import de.eventsourcingbook.cart.common.support.StreamAssertions
 import org.springframework.beans.factory.annotation.Autowired
-import org.assertj.core.api.Assertions.assertThat
-import java.util.*
 
-/**
-cart containing the  product should react if the price of the product changes
- */
 /** cart containing the product should react if the price of the product changes */
 class ArchiveItemProcessorTest : BaseIntegrationTest() {
 
-    @Autowired
-    private lateinit var commandGateway: CommandGateway
+    @Autowired private lateinit var commandGateway: CommandGateway
 
-    @Autowired
-    private lateinit var streamAssertions: StreamAssertions
+    @Autowired private lateinit var streamAssertions: StreamAssertions
 
   @Test
   fun `archive item processor test`() {
@@ -35,33 +26,25 @@ class ArchiveItemProcessorTest : BaseIntegrationTest() {
     val productId = UUID.randomUUID()
     val itemId = UUID.randomUUID()
 
-        var addItemCommand = RandomData.newInstance<AddItemCommand> {
-            this.aggregateId = aggregateId
-            this.productId = productId
-            this.itemId = itemId
-        }
+        var addItemCommand =
+            RandomData.newInstance<AddItemCommand> {
+                this.aggregateId = aggregateId
+                this.productId = productId
+                this.itemId = itemId
+            }
 
     commandGateway.sendAndWait<Any>(addItemCommand)
 
-    // uncomment this line to make the test green. Eventual Consistency in action
-    // Thread.sleep(1000)
 
-        var changePriceCommand = RandomData.newInstance<ChangePriceCommand> {
-            this.productId = productId
-        }
+        var changePriceCommand =
+            RandomData.newInstance<ChangePriceCommand> { this.productId = productId }
 
     commandGateway.sendAndWait<Any>(changePriceCommand)
 
-
         awaitUntilAssserted {
             streamAssertions.assertEvent(aggregateId.toString()) {
-                it is ItemArchivedEvent &&
-                        it.aggregateId == aggregateId &&
-                        it.itemId == itemId
+                it is ItemArchivedEvent && it.aggregateId == aggregateId && it.itemId == itemId
             }
         }
-
-
     }
-
 }

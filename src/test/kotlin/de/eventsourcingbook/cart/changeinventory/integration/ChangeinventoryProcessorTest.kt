@@ -11,17 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired
 
 class ChangeinventoryProcessorTestIntegration : BaseIntegrationTest() {
 
-  @Autowired private lateinit var commandGateway: CommandGateway
+    @Autowired private lateinit var commandGateway: CommandGateway
 
-  @Autowired private lateinit var streamAssertions: StreamAssertions
+    @Autowired private lateinit var streamAssertions: StreamAssertions
 
-  @Test
-  fun `ChangeinventoryProcessorTest`() {
+    @Test
+    fun `ChangeinventoryProcessorTest`() {
 
-    val aggregateId = UUID.randomUUID()
+        val aggregateId = UUID.randomUUID()
 
-    awaitUntilAssserted {
-      streamAssertions.assertEvent(aggregateId.toString()) { it is InventoryChangedEvent }
+        awaitUntilAssserted {
+            streamAssertions.assertEvent(aggregateId.toString()) { it is InventoryChangedEvent }
+        }
     }
-  }
 }

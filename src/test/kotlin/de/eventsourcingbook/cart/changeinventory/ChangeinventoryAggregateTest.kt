@@ -12,36 +12,39 @@ import org.junit.jupiter.api.Test
 
 class ChangeinventoryAggregateTest {
 
-  private lateinit var fixture: FixtureConfiguration<InventoryAggregate>
+    private lateinit var fixture: FixtureConfiguration<InventoryAggregate>
 
-  @BeforeEach
-  fun setUp() {
-    fixture = AggregateTestFixture(InventoryAggregate::class.java)
-  }
+    @BeforeEach
+    fun setUp() {
+        fixture = AggregateTestFixture(InventoryAggregate::class.java)
+    }
 
-  @Test
-  fun `ChangeinventoryAggregateTest`() {
-    // GIVEN
-    val events = mutableListOf<Event>()
+    @Test
+    fun `ChangeinventoryAggregateTest`() {
+        // GIVEN
+        val events = mutableListOf<Event>()
 
-    // WHEN
-    val command =
-        ChangeInventoryCommand(
-            inventory = RandomData.newInstance {}, productId = RandomData.newInstance {})
+        // WHEN
+        val command =
+            ChangeInventoryCommand(
+                inventory = RandomData.newInstance {},
+                productId = RandomData.newInstance {}
+            )
 
-    // THEN
-    val expectedEvents = mutableListOf<Event>()
+        // THEN
+        val expectedEvents = mutableListOf<Event>()
 
-    expectedEvents.add(
-        RandomData.newInstance<InventoryChangedEvent> {
-          this.inventory = command.inventory
-          this.productId = command.productId
-        })
+        expectedEvents.add(
+            RandomData.newInstance<InventoryChangedEvent> {
+                this.inventory = command.inventory
+                this.productId = command.productId
+            }
+        )
 
-    fixture
-        .given(events)
-        .`when`(command)
-        .expectSuccessfulHandlerExecution()
-        .expectEvents(*expectedEvents.toTypedArray())
-  }
+        fixture
+            .given(events)
+            .`when`(command)
+            .expectSuccessfulHandlerExecution()
+            .expectEvents(*expectedEvents.toTypedArray())
+    }
 }

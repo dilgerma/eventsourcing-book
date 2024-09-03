@@ -15,47 +15,52 @@ import org.junit.jupiter.api.Test
 
 class RemoveitemAggregateTest {
 
-  private lateinit var fixture: FixtureConfiguration<CartAggregate>
+    private lateinit var fixture: FixtureConfiguration<CartAggregate>
 
-  @BeforeEach
-  fun setUp() {
-    fixture = AggregateTestFixture(CartAggregate::class.java)
-  }
+    @BeforeEach
+    fun setUp() {
+        fixture = AggregateTestFixture(CartAggregate::class.java)
+    }
 
-  @Test
-  fun `RemoveitemAggregateTest`() {
-    // GIVEN
-    val events = mutableListOf<Event>()
-    val itemId = UUID.randomUUID()
+    @Test
+    fun `RemoveitemAggregateTest`() {
+        // GIVEN
+        val events = mutableListOf<Event>()
+        val itemId = UUID.randomUUID()
 
-    events.add(
-        RandomData.newInstance<CartCreatedEvent> {
-          aggregateId = UUID.fromString("4bcfd5e3-51d9-4256-bc16-4d1b71ed46b8")
-        })
-    events.add(
-        RandomData.newInstance<ItemAddedEvent> {
-          aggregateId = UUID.fromString("4bcfd5e3-51d9-4256-bc16-4d1b71ed46b8")
-          this.itemId = itemId
-        })
+        events.add(
+            RandomData.newInstance<CartCreatedEvent> {
+                aggregateId = UUID.fromString("4bcfd5e3-51d9-4256-bc16-4d1b71ed46b8")
+            }
+        )
+        events.add(
+            RandomData.newInstance<ItemAddedEvent> {
+                aggregateId = UUID.fromString("4bcfd5e3-51d9-4256-bc16-4d1b71ed46b8")
+                this.itemId = itemId
+            }
+        )
 
-    // WHEN
-    val command =
-        RemoveItemCommand(
-            aggregateId = UUID.fromString("4bcfd5e3-51d9-4256-bc16-4d1b71ed46b8"), itemId = itemId)
+        // WHEN
+        val command =
+            RemoveItemCommand(
+                aggregateId = UUID.fromString("4bcfd5e3-51d9-4256-bc16-4d1b71ed46b8"),
+                itemId = itemId
+            )
 
-    // THEN
-    val expectedEvents = mutableListOf<Event>()
+        // THEN
+        val expectedEvents = mutableListOf<Event>()
 
-    expectedEvents.add(
-        RandomData.newInstance<ItemRemovedEvent> {
-          this.aggregateId = command.aggregateId
-          this.itemId = command.itemId
-        })
+        expectedEvents.add(
+            RandomData.newInstance<ItemRemovedEvent> {
+                this.aggregateId = command.aggregateId
+                this.itemId = command.itemId
+            }
+        )
 
-    fixture
-        .given(events)
-        .`when`(command)
-        .expectSuccessfulHandlerExecution()
-        .expectEvents(*expectedEvents.toTypedArray())
-  }
+        fixture
+            .given(events)
+            .`when`(command)
+            .expectSuccessfulHandlerExecution()
+            .expectEvents(*expectedEvents.toTypedArray())
+    }
 }

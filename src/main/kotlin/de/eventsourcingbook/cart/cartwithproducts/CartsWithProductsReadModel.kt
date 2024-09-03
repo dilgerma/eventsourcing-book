@@ -16,8 +16,8 @@ data class CartProduct(
 @Entity
 class CartsWithProductsReadModelEntity {
 
-  @Column(name = "aggregateId") @Id lateinit var aggregateId: UUID
-  @Column(name = "productId") @Id lateinit var productId: UUID
+    @Column(name = "aggregateId") @Id lateinit var aggregateId: UUID
+    @Column(name = "productId") @Id lateinit var productId: UUID
 }
 
 data class CartsWithProductsReadModel(val data: List<CartsWithProductsReadModelEntity>)

@@ -14,16 +14,16 @@ import org.axonframework.spring.stereotype.Aggregate
 @Aggregate
 class InventoryAggregate {
 
-  @AggregateIdentifier lateinit var aggregateId: UUID
+    @AggregateIdentifier lateinit var aggregateId: UUID
 
-  @CreationPolicy(AggregateCreationPolicy.CREATE_IF_MISSING)
-  @CommandHandler
-  fun handle(command: ChangeInventoryCommand) {
-    AggregateLifecycle.apply(InventoryChangedEvent(command.productId, command.inventory))
-  }
+    @CreationPolicy(AggregateCreationPolicy.CREATE_IF_MISSING)
+    @CommandHandler
+    fun handle(command: ChangeInventoryCommand) {
+        AggregateLifecycle.apply(InventoryChangedEvent(command.productId, command.inventory))
+    }
 
-  @EventSourcingHandler
-  fun on(inventoryChangedEvent: InventoryChangedEvent) {
-    this.aggregateId = inventoryChangedEvent.productId
-  }
+    @EventSourcingHandler
+    fun on(inventoryChangedEvent: InventoryChangedEvent) {
+        this.aggregateId = inventoryChangedEvent.productId
+    }
 }

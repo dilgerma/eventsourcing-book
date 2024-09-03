@@ -16,27 +16,29 @@ import org.springframework.beans.factory.annotation.Autowired
 
 class InventoriesReadModelTest : BaseIntegrationTest() {
 
-  @Autowired private lateinit var commandGateway: CommandGateway
+    @Autowired private lateinit var commandGateway: CommandGateway
 
-  @Autowired private lateinit var queryGateway: QueryGateway
+    @Autowired private lateinit var queryGateway: QueryGateway
 
-  @Test
-  fun `InventoriesReadModelTest`() {
+    @Test
+    fun `InventoriesReadModelTest`() {
 
-    val aggregateId = UUID.randomUUID()
+        val aggregateId = UUID.randomUUID()
 
-    var changeInventoryCommand =
-        RandomData.newInstance<ChangeInventoryCommand> { this.productId = aggregateId }
+        var changeInventoryCommand =
+            RandomData.newInstance<ChangeInventoryCommand> { this.productId = aggregateId }
 
-    var changeInventoryCommandResult =
-        commandGateway.sendAndWait<CommandResult>(changeInventoryCommand)
+        var changeInventoryCommandResult =
+            commandGateway.sendAndWait<CommandResult>(changeInventoryCommand)
 
-    awaitUntilAssserted {
-      var readModel =
-          queryGateway.query(
-              InventoriesReadModelQuery(aggregateId), InventoriesReadModel::class.java)
-      // TODO add assertions
-      assertThat(readModel.get()).isNotNull
+        awaitUntilAssserted {
+            var readModel =
+                queryGateway.query(
+                    InventoriesReadModelQuery(aggregateId),
+                    InventoriesReadModel::class.java
+                )
+            // TODO add assertions
+            assertThat(readModel.get()).isNotNull
+        }
     }
-  }
 }

@@ -14,14 +14,16 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class InventoriesRessource(private var queryGateway: QueryGateway) {
 
-  var logger = KotlinLogging.logger {}
+    var logger = KotlinLogging.logger {}
 
-  @CrossOrigin
-  @GetMapping("/inventories/{aggregateId}")
-  fun findReadModel(
-      @PathVariable("aggregateId") aggregateId: UUID
-  ): CompletableFuture<InventoriesReadModel> {
-    return queryGateway.query(
-        InventoriesReadModelQuery(aggregateId), InventoriesReadModel::class.java)
-  }
+    @CrossOrigin
+    @GetMapping("/inventories/{aggregateId}")
+    fun findReadModel(
+        @PathVariable("aggregateId") aggregateId: UUID
+    ): CompletableFuture<InventoriesReadModel> {
+        return queryGateway.query(
+            InventoriesReadModelQuery(aggregateId),
+            InventoriesReadModel::class.java
+        )
+    }
 }

@@ -14,15 +14,15 @@ class PriceChangeKafkaDebugResource(
     private var kafkaTemplate: KafkaTemplate<String, ExternalPriceChangedEvent>
 ) {
 
-  var logger = KotlinLogging.logger {}
+    var logger = KotlinLogging.logger {}
 
-  @CrossOrigin
-  @PostMapping("/debug/external/changeprice")
-  fun processDebugCommand(
-      @RequestParam productId: UUID,
-      @RequestParam price: BigDecimal,
-      @RequestParam oldPrice: BigDecimal,
-  ) {
-    kafkaTemplate.send("inventories", ExternalPriceChangedEvent(productId, price, oldPrice))
-  }
+    @CrossOrigin
+    @PostMapping("/debug/external/changeprice")
+    fun processDebugCommand(
+        @RequestParam productId: UUID,
+        @RequestParam price: BigDecimal,
+        @RequestParam oldPrice: BigDecimal,
+    ) {
+        kafkaTemplate.send("inventories", ExternalPriceChangedEvent(productId, price, oldPrice))
+    }
 }
