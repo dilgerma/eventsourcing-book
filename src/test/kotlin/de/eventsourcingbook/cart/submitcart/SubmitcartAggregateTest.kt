@@ -9,11 +9,11 @@ import de.eventsourcingbook.cart.events.CartCreatedEvent
 import de.eventsourcingbook.cart.events.CartSubmittedEvent
 import de.eventsourcingbook.cart.events.ItemAddedEvent
 import de.eventsourcingbook.cart.events.OrderedProduct
-import java.util.UUID
 import org.axonframework.test.aggregate.AggregateTestFixture
 import org.axonframework.test.aggregate.FixtureConfiguration
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import java.util.UUID
 
 /**  */
 class SubmitcartAggregateTest {
@@ -37,7 +37,7 @@ class SubmitcartAggregateTest {
         events.add(
             RandomData.newInstance<CartCreatedEvent> {
                 aggregateId = UUID.fromString("2519f0c5-040b-426c-9565-82634c1ede2f")
-            }
+            },
         )
         events.add(
             RandomData.newInstance<ItemAddedEvent> {
@@ -45,7 +45,7 @@ class SubmitcartAggregateTest {
                 this.price = price1
                 this.itemId = UUID.randomUUID()
                 this.productId = productId1
-            }
+            },
         )
         events.add(
             RandomData.newInstance<ItemAddedEvent> {
@@ -53,7 +53,7 @@ class SubmitcartAggregateTest {
                 this.price = price2
                 this.itemId = UUID.randomUUID()
                 this.productId = productId2
-            }
+            },
         )
 
         // WHEN
@@ -71,7 +71,7 @@ class SubmitcartAggregateTest {
                 this.orderedProducts =
                     listOf(OrderedProduct(productId1, price1), OrderedProduct(productId2, price2))
                 totalPrice = 20.98
-            }
+            },
         )
 
         fixture
@@ -96,7 +96,7 @@ class SubmitcartAggregateTest {
                 this.price = price1
                 this.itemId = UUID.randomUUID()
                 this.productId = productId1
-            }
+            },
         )
         events.add(RandomData.newInstance<CartSubmittedEvent> { this.aggregateId = aggregateId })
 

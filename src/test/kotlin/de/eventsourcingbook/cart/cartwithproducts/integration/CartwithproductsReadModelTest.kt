@@ -6,12 +6,12 @@ import de.eventsourcingbook.cart.common.support.BaseIntegrationTest
 import de.eventsourcingbook.cart.common.support.RandomData
 import de.eventsourcingbook.cart.common.support.awaitUntilAssserted
 import de.eventsourcingbook.cart.domain.commands.additem.AddItemCommand
-import java.util.*
 import org.assertj.core.api.Assertions.assertThat
 import org.axonframework.commandhandling.gateway.CommandGateway
 import org.axonframework.queryhandling.QueryGateway
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import java.util.*
 
 /** Cart should contain the exact product id of the added item */
 class CartwithproductsReadModelTest : BaseIntegrationTest() {
@@ -22,7 +22,6 @@ class CartwithproductsReadModelTest : BaseIntegrationTest() {
 
     @Test
     fun `CartwithproductsReadModelTest`() {
-
         val aggregateId = UUID.randomUUID()
         val productId = UUID.randomUUID()
         val itemId = UUID.randomUUID()
@@ -40,7 +39,7 @@ class CartwithproductsReadModelTest : BaseIntegrationTest() {
             var readModel =
                 queryGateway.query(
                     CartsWithProductsReadModelQuery(productId),
-                    CartsWithProductsReadModel::class.java
+                    CartsWithProductsReadModel::class.java,
                 )
             assertThat(readModel.get().data).hasSize(1)
             assertThat(readModel.get().data).first().matches {

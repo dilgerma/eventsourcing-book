@@ -1,18 +1,17 @@
 package de.eventsourcingbook.cart.changeinventory.internal
 
-import java.util.*
 import mu.KotlinLogging
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import java.util.*
 
 @RestController
 class InventoryKafkaDebugResource(
-    private var kafkaTemplate: KafkaTemplate<String, ExternalInventoryChangedEvent>
+    private var kafkaTemplate: KafkaTemplate<String, in ExternalInventoryChangedEvent>,
 ) {
-
     var logger = KotlinLogging.logger {}
 
     @CrossOrigin

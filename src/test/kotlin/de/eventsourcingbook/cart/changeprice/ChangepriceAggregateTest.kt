@@ -29,7 +29,7 @@ class ChangepriceAggregateTest {
             ChangePriceCommand(
                 newPrice = RandomData.newInstance {},
                 oldPrice = RandomData.newInstance {},
-                productId = RandomData.newInstance {}
+                productId = RandomData.newInstance {},
             )
 
         // THEN
@@ -40,7 +40,7 @@ class ChangepriceAggregateTest {
                 this.newPrice = command.newPrice
                 this.oldPrice = command.oldPrice
                 this.productId = command.productId
-            }
+            },
         )
 
         fixture

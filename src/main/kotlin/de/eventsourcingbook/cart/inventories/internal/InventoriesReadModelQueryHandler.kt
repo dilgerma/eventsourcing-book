@@ -10,7 +10,6 @@ class InventoriesReadModelQueryHandler(private val repository: InventoriesReadMo
 
     @QueryHandler
     fun handleQuery(query: InventoriesReadModelQuery): InventoriesReadModel? {
-
         if (!repository.existsById(query.productId)) {
             return null
         }

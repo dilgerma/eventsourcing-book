@@ -7,12 +7,12 @@ import de.eventsourcingbook.cart.common.support.awaitUntilAssserted
 import de.eventsourcingbook.cart.domain.commands.changeinventory.ChangeInventoryCommand
 import de.eventsourcingbook.cart.inventories.InventoriesReadModel
 import de.eventsourcingbook.cart.inventories.InventoriesReadModelQuery
-import java.util.*
 import org.assertj.core.api.Assertions.assertThat
 import org.axonframework.commandhandling.gateway.CommandGateway
 import org.axonframework.queryhandling.QueryGateway
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import java.util.*
 
 class InventoriesReadModelTest : BaseIntegrationTest() {
 
@@ -22,7 +22,6 @@ class InventoriesReadModelTest : BaseIntegrationTest() {
 
     @Test
     fun `InventoriesReadModelTest`() {
-
         val aggregateId = UUID.randomUUID()
 
         var changeInventoryCommand =
@@ -35,7 +34,7 @@ class InventoriesReadModelTest : BaseIntegrationTest() {
             var readModel =
                 queryGateway.query(
                     InventoriesReadModelQuery(aggregateId),
-                    InventoriesReadModel::class.java
+                    InventoriesReadModel::class.java,
                 )
             // TODO add assertions
             assertThat(readModel.get()).isNotNull

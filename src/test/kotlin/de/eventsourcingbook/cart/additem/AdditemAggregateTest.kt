@@ -6,11 +6,11 @@ import de.eventsourcingbook.cart.domain.CartAggregate
 import de.eventsourcingbook.cart.domain.commands.additem.AddItemCommand
 import de.eventsourcingbook.cart.events.CartCreatedEvent
 import de.eventsourcingbook.cart.events.ItemAddedEvent
-import java.util.UUID
 import org.axonframework.test.aggregate.AggregateTestFixture
 import org.axonframework.test.aggregate.FixtureConfiguration
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import java.util.UUID
 
 class AdditemAggregateTest {
 
@@ -35,14 +35,14 @@ class AdditemAggregateTest {
                 price = RandomData.newInstance {},
                 totalPrice = RandomData.newInstance {},
                 itemId = RandomData.newInstance {},
-                productId = RandomData.newInstance {}
+                productId = RandomData.newInstance {},
             )
 
         // THEN
         val expectedEvents = mutableListOf<Event>()
 
         expectedEvents.add(
-            RandomData.newInstance<CartCreatedEvent> { this.aggregateId = command.aggregateId }
+            RandomData.newInstance<CartCreatedEvent> { this.aggregateId = command.aggregateId },
         )
 
         expectedEvents.add(
@@ -53,7 +53,7 @@ class AdditemAggregateTest {
                 this.price = command.price
                 this.itemId = command.itemId
                 this.productId = command.productId
-            }
+            },
         )
 
         fixture

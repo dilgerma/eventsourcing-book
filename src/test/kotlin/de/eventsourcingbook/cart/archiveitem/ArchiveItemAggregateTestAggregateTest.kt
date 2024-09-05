@@ -7,11 +7,11 @@ import de.eventsourcingbook.cart.domain.commands.archiveitem.ArchiveItemCommand
 import de.eventsourcingbook.cart.events.CartCreatedEvent
 import de.eventsourcingbook.cart.events.ItemAddedEvent
 import de.eventsourcingbook.cart.events.ItemArchivedEvent
-import java.util.UUID
 import org.axonframework.test.aggregate.AggregateTestFixture
 import org.axonframework.test.aggregate.FixtureConfiguration
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import java.util.UUID
 
 /**  */
 class ArchiveItemAggregateTestAggregateTest {
@@ -33,7 +33,7 @@ class ArchiveItemAggregateTestAggregateTest {
         events.add(
             RandomData.newInstance<CartCreatedEvent> {
                 aggregateId = UUID.fromString("9952be8f-15c9-4965-91bd-586c716c5a62")
-            }
+            },
         )
         events.add(
             RandomData.newInstance<ItemAddedEvent> {
@@ -43,14 +43,14 @@ class ArchiveItemAggregateTestAggregateTest {
                 price = RandomData.newInstance {}
                 this.productId = productId
                 this.itemId = itemId
-            }
+            },
         )
 
         // WHEN
         val command =
             ArchiveItemCommand(
                 aggregateId = UUID.fromString("9952be8f-15c9-4965-91bd-586c716c5a62"),
-                productId = productId
+                productId = productId,
             )
 
         // THEN
@@ -60,7 +60,7 @@ class ArchiveItemAggregateTestAggregateTest {
             RandomData.newInstance<ItemArchivedEvent> {
                 this.aggregateId = command.aggregateId
                 this.itemId = itemId
-            }
+            },
         )
 
         fixture

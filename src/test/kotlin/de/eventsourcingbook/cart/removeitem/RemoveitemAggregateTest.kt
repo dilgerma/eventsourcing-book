@@ -7,11 +7,11 @@ import de.eventsourcingbook.cart.domain.commands.removeitem.RemoveItemCommand
 import de.eventsourcingbook.cart.events.CartCreatedEvent
 import de.eventsourcingbook.cart.events.ItemAddedEvent
 import de.eventsourcingbook.cart.events.ItemRemovedEvent
-import java.util.UUID
 import org.axonframework.test.aggregate.AggregateTestFixture
 import org.axonframework.test.aggregate.FixtureConfiguration
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import java.util.UUID
 
 class RemoveitemAggregateTest {
 
@@ -31,20 +31,20 @@ class RemoveitemAggregateTest {
         events.add(
             RandomData.newInstance<CartCreatedEvent> {
                 aggregateId = UUID.fromString("4bcfd5e3-51d9-4256-bc16-4d1b71ed46b8")
-            }
+            },
         )
         events.add(
             RandomData.newInstance<ItemAddedEvent> {
                 aggregateId = UUID.fromString("4bcfd5e3-51d9-4256-bc16-4d1b71ed46b8")
                 this.itemId = itemId
-            }
+            },
         )
 
         // WHEN
         val command =
             RemoveItemCommand(
                 aggregateId = UUID.fromString("4bcfd5e3-51d9-4256-bc16-4d1b71ed46b8"),
-                itemId = itemId
+                itemId = itemId,
             )
 
         // THEN
@@ -54,7 +54,7 @@ class RemoveitemAggregateTest {
             RandomData.newInstance<ItemRemovedEvent> {
                 this.aggregateId = command.aggregateId
                 this.itemId = command.itemId
-            }
+            },
         )
 
         fixture

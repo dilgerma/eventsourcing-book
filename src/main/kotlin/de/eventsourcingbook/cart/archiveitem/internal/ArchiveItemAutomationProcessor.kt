@@ -27,15 +27,15 @@ class ArchiveItemAutomationProcessor : Processor {
         queryGateway
             .query(
                 CartsWithProductsReadModelQuery(event.productId),
-                CartsWithProductsReadModel::class.java
+                CartsWithProductsReadModel::class.java,
             )
             .thenAccept {
                 it.data.forEach { cart ->
                     commandGateway.send<ArchiveItemCommand>(
                         ArchiveItemCommand(
                             aggregateId = cart.aggregateId,
-                            productId = cart.productId
-                        )
+                            productId = cart.productId,
+                        ),
                     )
                 }
             }

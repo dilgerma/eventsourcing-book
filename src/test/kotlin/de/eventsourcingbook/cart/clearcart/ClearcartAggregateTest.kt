@@ -7,11 +7,11 @@ import de.eventsourcingbook.cart.domain.commands.clearcart.ClearCartCommand
 import de.eventsourcingbook.cart.events.CartClearedEvent
 import de.eventsourcingbook.cart.events.CartCreatedEvent
 import de.eventsourcingbook.cart.events.ItemAddedEvent
-import java.util.UUID
 import org.axonframework.test.aggregate.AggregateTestFixture
 import org.axonframework.test.aggregate.FixtureConfiguration
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import java.util.UUID
 
 class ClearcartAggregateTest {
 
@@ -30,12 +30,12 @@ class ClearcartAggregateTest {
         events.add(
             RandomData.newInstance<CartCreatedEvent> {
                 aggregateId = UUID.fromString("e94adda2-d1fe-4fd6-9f57-9663ba4a831a")
-            }
+            },
         )
         events.add(
             RandomData.newInstance<ItemAddedEvent> {
                 aggregateId = UUID.fromString("e94adda2-d1fe-4fd6-9f57-9663ba4a831a")
-            }
+            },
         )
 
         // WHEN
@@ -46,7 +46,7 @@ class ClearcartAggregateTest {
         val expectedEvents = mutableListOf<Event>()
 
         expectedEvents.add(
-            RandomData.newInstance<CartClearedEvent> { this.aggregateId = command.aggregateId }
+            RandomData.newInstance<CartClearedEvent> { this.aggregateId = command.aggregateId },
         )
 
         fixture

@@ -7,7 +7,6 @@ import de.eventsourcingbook.cart.domain.commands.clearcart.ClearCartCommand
 import de.eventsourcingbook.cart.domain.commands.removeitem.RemoveItemCommand
 import de.eventsourcingbook.cart.domain.commands.submitcart.SubmitCartCommand
 import de.eventsourcingbook.cart.events.*
-import java.util.UUID
 import org.axonframework.commandhandling.CommandHandler
 import org.axonframework.eventsourcing.EventSourcingHandler
 import org.axonframework.modelling.command.AggregateCreationPolicy
@@ -15,6 +14,7 @@ import org.axonframework.modelling.command.AggregateIdentifier
 import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.modelling.command.CreationPolicy
 import org.axonframework.spring.stereotype.Aggregate
+import java.util.UUID
 
 typealias CartItemId = UUID
 
@@ -22,12 +22,12 @@ typealias ProductId = UUID
 
 @Aggregate
 class CartAggregate {
-
     @AggregateIdentifier var aggregateId: UUID? = null
 
     val cartItems = mutableMapOf<CartItemId, ProductId>()
     var productPrice = mutableMapOf<ProductId, Double>()
     var submitted = false
+    var published = false
 
     // Add Item
     @CommandHandler
@@ -46,8 +46,8 @@ class CartAggregate {
                 image = command.image,
                 price = command.price,
                 productId = command.productId,
-                itemId = command.itemId
-            )
+                itemId = command.itemId,
+            ),
         )
     }
 
@@ -117,13 +117,28 @@ class CartAggregate {
             CartSubmittedEvent(
                 command.aggregateId,
                 cartItems.map { OrderedProduct(it.value, productPrice[it.value]!!) },
-                cartItems.map { productPrice[it.value]!! }.sumOf { it }
-            )
+                cartItems.map { productPrice[it.value]!! }.sumOf { it },
+            ),
         )
     }
 
     @EventSourcingHandler
     fun on(event: CartSubmittedEvent) {
         this.submitted = true
+    }
+
+    fun publish() {
+        if (!this.submitted) {
+            throw CommandException("cannot publish unsubmitted cart")
+        }
+        if (this.published) {
+            throw CommandException("cannot publish cart twice")
+        }
+        AggregateLifecycle.apply(CartPublishedEvent(this.aggregateId!!))
+    }
+
+    @EventSourcingHandler
+    fun on(event: CartPublishedEvent) {
+        this.published = true
     }
 }

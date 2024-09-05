@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class CartsWithProductsReadModelQueryHandler(
-    private val repository: CartsWithProductsReadModelRepository
+    private val repository: CartsWithProductsReadModelRepository,
 ) {
 
     @QueryHandler

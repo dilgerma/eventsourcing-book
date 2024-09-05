@@ -14,7 +14,7 @@ class InventoryChangedKafkaConsumer(var commandGateway: CommandGateway) {
             ChangeInventoryCommand(
                 externalInventoryChangedEvent.productId,
                 externalInventoryChangedEvent.inventory,
-            )
+            ),
         )
     }
 }
