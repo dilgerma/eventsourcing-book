@@ -1,15 +1,13 @@
-package de.eventsourcingbook.cart.domain.commands.additem
+package de.eventsourcingbook.cart.domain.commands.publishcart
 
 import de.eventsourcingbook.cart.common.Command
+import de.eventsourcingbook.cart.events.OrderedProduct
 import org.axonframework.modelling.command.TargetAggregateIdentifier
 import java.util.UUID
+import kotlin.collections.List
 
-data class AddItemCommand(
+data class PublishCartCommand(
     @TargetAggregateIdentifier override var aggregateId: UUID,
-    var description: String,
-    var image: String,
-    var price: Double,
+    var orderedProducts: List<OrderedProduct>,
     var totalPrice: Double,
-    var itemId: UUID,
-    var productId: UUID,
 ) : Command

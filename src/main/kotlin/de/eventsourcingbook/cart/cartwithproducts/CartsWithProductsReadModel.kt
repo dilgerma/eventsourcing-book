@@ -1,7 +1,10 @@
 package de.eventsourcingbook.cart.cartwithproducts
 
 import de.eventsourcingbook.cart.common.NoArg
-import jakarta.persistence.*
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.Id
+import jakarta.persistence.IdClass
 import java.util.UUID
 
 class CartsWithProductsReadModelQuery(

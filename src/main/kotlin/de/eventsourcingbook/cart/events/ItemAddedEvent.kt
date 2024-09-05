@@ -9,5 +9,5 @@ data class ItemAddedEvent(
     var image: String,
     var price: Double,
     var itemId: UUID,
-    var productId: UUID
+    var productId: UUID,
 ) : Event

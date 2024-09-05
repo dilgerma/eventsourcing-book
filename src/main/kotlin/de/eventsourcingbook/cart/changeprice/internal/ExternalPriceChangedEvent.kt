@@ -6,5 +6,5 @@ import java.util.*
 data class ExternalPriceChangedEvent(
     var productId: UUID,
     var price: BigDecimal,
-    val oldPrice: BigDecimal
+    val oldPrice: BigDecimal,
 )

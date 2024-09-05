@@ -8,10 +8,10 @@ import de.eventsourcingbook.cart.common.support.awaitUntilAssserted
 import de.eventsourcingbook.cart.domain.commands.additem.AddItemCommand
 import de.eventsourcingbook.cart.domain.commands.changeprice.ChangePriceCommand
 import de.eventsourcingbook.cart.events.ItemArchivedEvent
-import java.util.*
 import org.axonframework.commandhandling.gateway.CommandGateway
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import java.util.*
 
 /** cart containing the product should react if the price of the product changes */
 class ArchiveItemProcessorTest : BaseIntegrationTest() {
@@ -22,7 +22,6 @@ class ArchiveItemProcessorTest : BaseIntegrationTest() {
 
     @Test
     fun `archive item processor test`() {
-
         val aggregateId = UUID.randomUUID()
         val productId = UUID.randomUUID()
         val itemId = UUID.randomUUID()

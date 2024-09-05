@@ -5,21 +5,19 @@ import de.eventsourcingbook.cart.common.support.BaseIntegrationTest
 import de.eventsourcingbook.cart.common.support.StreamAssertions
 import de.eventsourcingbook.cart.common.support.awaitUntilAssserted
 import de.eventsourcingbook.cart.events.PriceChangedEvent
-import java.math.BigDecimal
-import java.util.*
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.kafka.core.KafkaTemplate
+import java.math.BigDecimal
+import java.util.*
 
-class ChangepriceProcessorTestIntegration : BaseIntegrationTest() {
-
+class ChangepriceProcessorTest : BaseIntegrationTest() {
     @Autowired private lateinit var kafkaTemplate: KafkaTemplate<String, ExternalPriceChangedEvent>
 
     @Autowired private lateinit var streamAssertions: StreamAssertions
 
     @Test
     fun `ChangepriceProcessorTest`() {
-
         val aggregateId = UUID.randomUUID()
         val oldPrice = BigDecimal.valueOf(25.99)
         val newPrice = BigDecimal.valueOf(26.99)

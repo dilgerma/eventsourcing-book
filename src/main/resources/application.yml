@@ -21,6 +21,7 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      transaction-id-prefix: "cart"
     consumer:
       group-id: cart
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -39,6 +40,9 @@ axon:
     processors:
       cart-with-products:
         mode: subscribing
+      publish_cart:
+        dlq:
+          enabled: true
 
 application:
   debug:

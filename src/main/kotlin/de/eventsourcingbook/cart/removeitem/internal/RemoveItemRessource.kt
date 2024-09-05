@@ -2,8 +2,6 @@ package de.eventsourcingbook.cart.removeitem.internal
 
 import de.eventsourcingbook.cart.common.CommandResult
 import de.eventsourcingbook.cart.domain.commands.removeitem.RemoveItemCommand
-import java.util.UUID
-import java.util.concurrent.CompletableFuture
 import mu.KotlinLogging
 import org.axonframework.commandhandling.gateway.CommandGateway
 import org.springframework.web.bind.annotation.CrossOrigin
@@ -12,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import java.util.UUID
+import java.util.concurrent.CompletableFuture
 
 data class RemoveItemPayload(var aggregateId: UUID, var itemId: UUID)
 
@@ -24,7 +24,7 @@ class RemoveItemRessource(private var commandGateway: CommandGateway) {
     @PostMapping("/debug/removeitem")
     fun processDebugCommand(
         @RequestParam aggregateId: UUID,
-        @RequestParam itemId: UUID
+        @RequestParam itemId: UUID,
     ): CompletableFuture<CommandResult> {
         return commandGateway.send(RemoveItemCommand(aggregateId, itemId))
     }
@@ -33,10 +33,10 @@ class RemoveItemRessource(private var commandGateway: CommandGateway) {
     @PostMapping("/removeitem/{aggregateId}")
     fun processCommand(
         @PathVariable("aggregateId") aggregateId: UUID,
-        @RequestBody payload: RemoveItemPayload
+        @RequestBody payload: RemoveItemPayload,
     ): CompletableFuture<CommandResult> {
         return commandGateway.send(
-            RemoveItemCommand(aggregateId = payload.aggregateId, itemId = payload.itemId)
+            RemoveItemCommand(aggregateId = payload.aggregateId, itemId = payload.itemId),
         )
     }
 }

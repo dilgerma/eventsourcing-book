@@ -1,5 +1,6 @@
 package de.eventsourcingbook.cart
 
+import jakarta.persistence.EntityManagerFactory
 import mu.KotlinLogging
 import org.axonframework.commandhandling.CommandBus
 import org.axonframework.commandhandling.CommandMessage
@@ -17,39 +18,44 @@ import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Primary
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.kafka.annotation.EnableKafka
 import org.springframework.modulith.Modulith
+import org.springframework.orm.jpa.JpaTransactionManager
 import org.springframework.scheduling.annotation.EnableScheduling
+import org.springframework.transaction.PlatformTransactionManager
+import org.springframework.transaction.annotation.EnableTransactionManagement
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean
 
 @Configuration
 class ValidatorConfig {
     @Bean
-    fun localValidatorFactoryBean(): LocalValidatorFactoryBean {
-        return LocalValidatorFactoryBean()
-    }
+    fun localValidatorFactoryBean(): LocalValidatorFactoryBean = LocalValidatorFactoryBean()
 }
 
 @Configuration
 class ValidationConfig {
     @Bean
-    fun beanValidationInterceptor(
-        validatorFactory: LocalValidatorFactoryBean
-    ): BeanValidationInterceptor<*> {
-        return BeanValidationInterceptor<CommandMessage<*>>(validatorFactory)
-    }
+    fun beanValidationInterceptor(validatorFactory: LocalValidatorFactoryBean): BeanValidationInterceptor<*> =
+        BeanValidationInterceptor<CommandMessage<*>>(validatorFactory)
+}
+
+@EnableTransactionManagement
+@Configuration
+class TransactionManagerConfig {
+    @Primary
+    @Bean
+    fun transactionManager(emf: EntityManagerFactory): PlatformTransactionManager = JpaTransactionManager(emf)
 }
 
 @Configuration
 class AxonConfig {
-
     val logger = KotlinLogging.logger {}
 
     @Autowired
     fun configurationEventHandling(config: EventProcessingConfigurer) {
         config.registerDefaultListenerInvocationErrorHandler { PropagatingErrorHandler.instance() }
-
         config.registerListenerInvocationErrorHandler("inventories") { LoggingErrorHandler() }
     }
 
@@ -57,10 +63,11 @@ class AxonConfig {
     fun commandGateway(
         commandBus: CommandBus?,
         dispatchInterceptors: List<MessageDispatchInterceptor<CommandMessage<*>>>,
-        handlerInterceptor: List<MessageHandlerInterceptor<CommandMessage<*>>>
+        handlerInterceptor: List<MessageHandlerInterceptor<CommandMessage<*>>>,
     ): CommandGateway {
         handlerInterceptor.forEach { it -> commandBus?.registerHandlerInterceptor(it) }
-        return DefaultCommandGateway.builder()
+        return DefaultCommandGateway
+            .builder()
             .commandBus(commandBus!!)
             .dispatchInterceptors(*dispatchInterceptors.toTypedArray())
             .build()
@@ -70,7 +77,7 @@ class AxonConfig {
 @Modulith(
     systemName = "System",
     sharedModules = ["de.eventsourcingbook.cart.common", "de.eventsourcingbook.cart.domain"],
-    useFullyQualifiedModuleNames = true
+    useFullyQualifiedModuleNames = true,
 )
 @EnableJpaRepositories
 @SpringBootApplication
@@ -82,8 +89,9 @@ class AxonConfig {
             "org.springframework.modulith.events.jpa",
             "org.axonframework.eventhandling.tokenstore",
             "org.axonframework.eventsourcing.eventstore.jpa",
-            "org.axonframework.modelling.saga.repository.jpa"
-        ]
+            "org.axonframework.modelling.saga.repository.jpa",
+            "org.axonframework.eventhandling.deadletter.jpa",
+        ],
 )
 @EnableKafka
 class SpringApp {

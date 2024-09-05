@@ -28,7 +28,7 @@ class ChangeinventoryAggregateTest {
         val command =
             ChangeInventoryCommand(
                 inventory = RandomData.newInstance {},
-                productId = RandomData.newInstance {}
+                productId = RandomData.newInstance {},
             )
 
         // THEN
@@ -38,7 +38,7 @@ class ChangeinventoryAggregateTest {
             RandomData.newInstance<InventoryChangedEvent> {
                 this.inventory = command.inventory
                 this.productId = command.productId
-            }
+            },
         )
 
         fixture

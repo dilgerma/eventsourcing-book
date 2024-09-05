@@ -7,7 +7,6 @@ import de.eventsourcingbook.cart.domain.commands.clearcart.ClearCartCommand
 import de.eventsourcingbook.cart.domain.commands.removeitem.RemoveItemCommand
 import de.eventsourcingbook.cart.domain.commands.submitcart.SubmitCartCommand
 import de.eventsourcingbook.cart.events.*
-import java.util.UUID
 import org.axonframework.commandhandling.CommandHandler
 import org.axonframework.eventsourcing.EventSourcingHandler
 import org.axonframework.modelling.command.AggregateCreationPolicy
@@ -15,6 +14,7 @@ import org.axonframework.modelling.command.AggregateIdentifier
 import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.modelling.command.CreationPolicy
 import org.axonframework.spring.stereotype.Aggregate
+import java.util.UUID
 
 typealias CartItemId = UUID
 
@@ -27,6 +27,7 @@ class CartAggregate {
     val cartItems = mutableMapOf<CartItemId, ProductId>()
     var productPrice = mutableMapOf<ProductId, Double>()
     var submitted = false
+    var published = false
 
     // Add Item
     @CommandHandler
@@ -124,5 +125,20 @@ class CartAggregate {
     @EventSourcingHandler
     fun on(event: CartSubmittedEvent) {
         this.submitted = true
+    }
+
+    fun publish() {
+        if (!this.submitted) {
+            throw CommandException("cannot publish unsubmitted cart")
+        }
+        if (this.published) {
+            throw CommandException("cannot publish cart twice")
+        }
+        AggregateLifecycle.apply(CartPublishedEvent(this.aggregateId!!))
+    }
+
+    @EventSourcingHandler
+    fun on(event: CartPublishedEvent) {
+        this.published = true
     }
 }

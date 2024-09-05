@@ -10,11 +10,8 @@
     </parent>
     <groupId>de.eventsourcingbook.cart
     </groupId>
-    <artifactId>.
+    <artifactId>cart
     </artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>.
-    </name>
     <properties>
         <java.version>19</java.version>
         <kotlin.version>2.0.0</kotlin.version>
@@ -232,10 +229,14 @@
                 </executions>
                 <configuration>
                     <kotlin>
-                        <ktfmt>
-                            <version>0.46</version> <!-- optional -->
-                            <style>KOTLINLANG</style> <!-- optional, options are META (default), GOOGLE and KOTLINLANG -->
-                        </ktfmt>
+                        <ktlint>
+                            <version>1.0.0</version> <!-- optional -->
+                            <editorConfigOverride> <!-- optional -->
+                                <ktlint_code_style>intellij_idea</ktlint_code_style>
+                                <ktlint_standard_no-wildcard-imports>disabled</ktlint_standard_no-wildcard-imports>
+                            </editorConfigOverride>
+                        </ktlint>
+
                         <!-- These are the defaults, you can override if you want -->
                         <includes>
                             <include>src/main/kotlin/**/*.kt</include>

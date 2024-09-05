@@ -1,6 +1,5 @@
 package de.eventsourcingbook.cart.support.internal.debug
 
-import java.util.UUID
 import org.axonframework.eventhandling.DomainEventMessage
 import org.axonframework.eventsourcing.eventstore.EventStorageEngine
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
@@ -8,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
+import java.util.UUID
 
 @ConditionalOnProperty("application.debug.enabled", havingValue = "true", matchIfMissing = false)
 @RestController

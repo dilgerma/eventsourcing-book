@@ -6,10 +6,10 @@ import org.springframework.test.context.TestPropertySource
 
 @TestPropertySource(
     properties =
-        [
-            "spring.jpa.hibernate.ddl-auto=create-drop",
-            "spring.jpa.show-sql=true",
-        ]
+    [
+        "spring.jpa.hibernate.ddl-auto=create-drop",
+        "spring.jpa.show-sql=true",
+    ],
 )
 @Disabled
 class DbLogTest : BaseIntegrationTest() {
