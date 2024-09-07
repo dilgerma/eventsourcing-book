@@ -21,7 +21,7 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      transaction-id-prefix: "cart"
+      transaction-id-prefix: "cart-tx-"
     consumer:
       group-id: cart
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer

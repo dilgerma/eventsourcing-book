@@ -30,6 +30,9 @@ class PublishCartCommandHandler(
                 ),
             )
             it.publish()
+            if (true) {
+                throw IllegalStateException("error processing")
+            }
         }
     }
 }

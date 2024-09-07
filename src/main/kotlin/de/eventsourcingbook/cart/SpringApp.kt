@@ -7,10 +7,13 @@ import org.axonframework.commandhandling.CommandMessage
 import org.axonframework.commandhandling.gateway.CommandGateway
 import org.axonframework.commandhandling.gateway.DefaultCommandGateway
 import org.axonframework.config.EventProcessingConfigurer
+import org.axonframework.eventhandling.EventMessage
 import org.axonframework.eventhandling.LoggingErrorHandler
 import org.axonframework.eventhandling.PropagatingErrorHandler
 import org.axonframework.messaging.MessageDispatchInterceptor
 import org.axonframework.messaging.MessageHandlerInterceptor
+import org.axonframework.messaging.deadletter.Decisions
+import org.axonframework.messaging.deadletter.EnqueuePolicy
 import org.axonframework.messaging.interceptors.BeanValidationInterceptor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -57,6 +60,15 @@ class AxonConfig {
     fun configurationEventHandling(config: EventProcessingConfigurer) {
         config.registerDefaultListenerInvocationErrorHandler { PropagatingErrorHandler.instance() }
         config.registerListenerInvocationErrorHandler("inventories") { LoggingErrorHandler() }
+        config.registerDeadLetterPolicy("publish_cart") { config ->
+            EnqueuePolicy { letter, cause ->
+                var retries: Int = letter.diagnostics().getOrDefault("retries", 0) as Int
+                if (retries < 5) {
+                    Decisions.requeue<EventMessage<*>>(cause) { dl -> dl.diagnostics().and("retries", retries + 1) }
+                }
+                Decisions.doNotEnqueue()
+            } 
+        }
     }
 
     @Bean
