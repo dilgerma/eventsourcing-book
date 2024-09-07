@@ -5,6 +5,7 @@ import de.eventsourcingbook.cart.domain.commands.publishcart.PublishCartCommand
 import de.eventsourcingbook.cart.publishcart.internal.contract.ExternalPublishedCart
 import de.eventsourcingbook.cart.publishcart.internal.contract.OrderedProduct
 import org.axonframework.commandhandling.CommandHandler
+import org.axonframework.messaging.interceptors.ExceptionHandler
 import org.axonframework.modelling.command.Repository
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Component
@@ -30,6 +31,16 @@ class PublishCartCommandHandler(
                 ),
             )
             it.publish()
+        }
+    }
+
+    @ExceptionHandler
+    fun onException(
+        command: PublishCartCommand,
+        cause: Exception,
+    ) {
+        repository.load(command.aggregateId.toString())?.execute {
+            it.failPublication()
         }
     }
 }

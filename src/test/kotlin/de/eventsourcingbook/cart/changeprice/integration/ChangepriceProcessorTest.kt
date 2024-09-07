@@ -12,9 +12,11 @@ import java.math.BigDecimal
 import java.util.*
 
 class ChangepriceProcessorTest : BaseIntegrationTest() {
-    @Autowired private lateinit var kafkaTemplate: KafkaTemplate<String, ExternalPriceChangedEvent>
+    @Autowired
+    private lateinit var kafkaTemplate: KafkaTemplate<String, ExternalPriceChangedEvent>
 
-    @Autowired private lateinit var streamAssertions: StreamAssertions
+    @Autowired
+    private lateinit var streamAssertions: StreamAssertions
 
     @Test
     fun `ChangepriceProcessorTest`() {
@@ -23,9 +25,12 @@ class ChangepriceProcessorTest : BaseIntegrationTest() {
         val newPrice = BigDecimal.valueOf(26.99)
 
         awaitUntilAssserted {
-            kafkaTemplate
-                .send("price_changes", ExternalPriceChangedEvent(aggregateId, oldPrice, newPrice))
-                .get()
+            kafkaTemplate.executeInTransaction {
+                it
+                    .send("price_changes", ExternalPriceChangedEvent(aggregateId, oldPrice, newPrice))
+                    .get()
+            }
+
             streamAssertions.assertEvent(aggregateId.toString()) { it is PriceChangedEvent }
         }
     }

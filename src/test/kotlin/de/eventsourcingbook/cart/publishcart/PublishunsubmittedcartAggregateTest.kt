@@ -5,12 +5,12 @@ import de.eventsourcingbook.cart.common.support.RandomData
 import de.eventsourcingbook.cart.domain.CartAggregate
 import de.eventsourcingbook.cart.domain.commands.publishcart.PublishCartCommand
 import de.eventsourcingbook.cart.events.CartCreatedEvent
+import de.eventsourcingbook.cart.events.CartPublicationFailedEvent
 import de.eventsourcingbook.cart.events.ItemAddedEvent
 import de.eventsourcingbook.cart.publishcart.internal.PublishCartCommandHandler
 import de.eventsourcingbook.cart.publishcart.internal.contract.ExternalPublishedCart
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit5.MockKExtension
-import org.axonframework.modelling.command.AggregateInvocationException
 import org.axonframework.test.aggregate.AggregateTestFixture
 import org.axonframework.test.aggregate.FixtureConfiguration
 import org.junit.jupiter.api.BeforeEach
@@ -60,9 +60,16 @@ class PublishunsubmittedcartAggregateTest {
                 totalPrice = RandomData.newInstance {},
             )
 
+        val expectedEvents = mutableListOf<Event>()
+
+        expectedEvents.add(
+            RandomData.newInstance<CartPublicationFailedEvent> { this.aggregateId = command.aggregateId },
+        )
+
         fixture
             .given(events)
             .`when`(command)
-            .expectException(AggregateInvocationException::class.java)
+            .expectSuccessfulHandlerExecution()
+            .expectEvents(*expectedEvents.toTypedArray())
     }
 }

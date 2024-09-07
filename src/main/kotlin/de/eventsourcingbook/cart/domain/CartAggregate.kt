@@ -28,6 +28,7 @@ class CartAggregate {
     var productPrice = mutableMapOf<ProductId, Double>()
     var submitted = false
     var published = false
+    var publicationFailed = false
 
     // Add Item
     @CommandHandler
@@ -140,5 +141,14 @@ class CartAggregate {
     @EventSourcingHandler
     fun on(event: CartPublishedEvent) {
         this.published = true
+    }
+
+    fun failPublication() {
+        AggregateLifecycle.apply(CartPublicationFailedEvent(this.aggregateId!!))
+    }
+
+    @EventSourcingHandler
+    fun on(event: CartPublicationFailedEvent) {
+        this.publicationFailed = true
     }
 }
