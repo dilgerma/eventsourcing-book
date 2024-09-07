@@ -35,6 +35,10 @@ axon:
     general: jackson
   axonserver:
     enabled: false
+  eventhandling:
+    processors:
+      archive-item:
+        mode: subscribing
 
 application:
   debug:
