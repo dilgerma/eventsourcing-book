@@ -12,14 +12,14 @@ import java.util.UUID
 import java.util.concurrent.CompletableFuture
 
 @RestController
-class CartItemsRessource(
+class CartitemsRessource(
     private var queryGateway: QueryGateway,
 ) {
     var logger = KotlinLogging.logger {}
 
     @CrossOrigin
-    @GetMapping("/{cartId}/cartitems")
+    @GetMapping("/cartitems/{aggregateId}")
     fun findReadModel(
-        @PathVariable cartId: UUID,
-    ): CompletableFuture<CartItemsReadModel> = queryGateway.query(CartItemsReadModelQuery(cartId), CartItemsReadModel::class.java)
+        @PathVariable("aggregateId") aggregateId: UUID,
+    ): CompletableFuture<CartItemsReadModel> = queryGateway.query(CartItemsReadModelQuery(aggregateId), CartItemsReadModel::class.java)
 }

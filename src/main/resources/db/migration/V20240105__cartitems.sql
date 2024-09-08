@@ -1,0 +1,1 @@
+create table cart_items_read_model_entity (price float(53), total_price float(53), item_id varchar(36) not null, aggregate_id varchar(255), description varchar(255), finger_print varchar(255), image varchar(255), product_id varchar(255), primary key (item_id))

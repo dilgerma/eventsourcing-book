@@ -1,62 +1,45 @@
 package de.eventsourcingbook.cart.cartitems
 
-import de.eventsourcingbook.cart.common.Event
-import de.eventsourcingbook.cart.common.Query
-import de.eventsourcingbook.cart.common.ReadModel
-import de.eventsourcingbook.cart.events.CartCreatedEvent
-import de.eventsourcingbook.cart.events.ItemAddedEvent
-import de.eventsourcingbook.cart.events.ItemRemovedEvent
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.Id
+import org.hibernate.annotations.JdbcTypeCode
+import java.sql.Types
 import java.util.UUID
 
-class CartItemsReadModelQuery(
-    var aggregateId: UUID,
-) : Query
+data class CartItemsReadModelQuery(
+    val aggregateId: UUID,
+)
 
-class CartItemsReadModel : ReadModel {
+@Entity
+class CartItemsReadModelEntity {
+    @Id
+    @JdbcTypeCode(Types.VARCHAR)
+    @Column(name = "itemId")
+    var itemId: UUID? = null
+
+    @Column(name = "aggregateId")
     var aggregateId: UUID? = null
-    var totalPrice: Double = 0.0
-    val data: MutableList<CartItem> = mutableListOf()
 
-    fun applyEvent(events: List<Event>): CartItemsReadModel {
-        events.forEach {
-            when (it) {
-                is CartCreatedEvent -> {
-                    this.aggregateId = it.aggregateId
-                }
-                is ItemAddedEvent -> {
-                    // add cart item to list
-                    this.data.add(
-                        CartItem(
-                            itemId = it.itemId,
-                            aggregateId = it.aggregateId,
-                            description = it.description,
-                            image = it.image,
-                            price = it.price,
-                            productId = it.productId,
-                            fingerPrint = it.deviceFingerPrint,
-                        ),
-                    )
-                    // sum total price
-                    this.totalPrice += it.price
-                }
-                is ItemRemovedEvent -> {
-                    val item = this.data.find { item -> item.itemId == it.itemId }!!
-                    this.totalPrice -= item.price
-                    this.data.remove(item)
-                }
-            }
-        }
+    @Column(name = "description")
+    var description: String? = null
 
-        return this
-    }
+    @Column(name = "image")
+    var image: String? = null
+
+    @Column(name = "price")
+    var price: Double? = null
+
+    @Column(name = "totalPrice")
+    var totalPrice: Double? = null
+
+    @Column(name = "productId")
+    var productId: UUID? = null
+
+    @Column(name = "fingerPrint")
+    var fingerPrint: String? = null
 }
 
-data class CartItem(
-    var itemId: UUID,
-    var aggregateId: UUID,
-    var description: String,
-    var image: String,
-    var price: Double,
-    var productId: UUID,
-    var fingerPrint: String,
+data class CartItemsReadModel(
+    val data: List<CartItemsReadModelEntity>,
 )

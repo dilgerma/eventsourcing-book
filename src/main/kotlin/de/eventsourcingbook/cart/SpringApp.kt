@@ -84,14 +84,14 @@ class AxonConfig {
 @EnableScheduling
 @EntityScan(
     basePackages =
-        [
-            "de.eventsourcingbook.cart",
-            "org.springframework.modulith.events.jpa",
-            "org.axonframework.eventhandling.tokenstore",
-            "org.axonframework.eventsourcing.eventstore.jpa",
-            "org.axonframework.modelling.saga.repository.jpa",
-            "org.axonframework.eventhandling.deadletter.jpa",
-        ],
+    [
+        "de.eventsourcingbook.cart",
+        "org.springframework.modulith.events.jpa",
+        "org.axonframework.eventhandling.tokenstore",
+        "org.axonframework.eventsourcing.eventstore.jpa",
+        "org.axonframework.modelling.saga.repository.jpa",
+        "org.axonframework.eventhandling.deadletter.jpa",
+    ],
 )
 @EnableKafka
 class SpringApp {
