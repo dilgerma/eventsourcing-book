@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test
 import java.util.UUID
 
 class RemoveitemwhichwasalreadyremovedAggregateTest {
-
     private lateinit var fixture: FixtureConfiguration<CartAggregate>
 
     @BeforeEach

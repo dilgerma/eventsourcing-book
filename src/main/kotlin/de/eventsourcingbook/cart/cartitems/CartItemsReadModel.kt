@@ -8,10 +8,11 @@ import de.eventsourcingbook.cart.events.ItemAddedEvent
 import de.eventsourcingbook.cart.events.ItemRemovedEvent
 import java.util.UUID
 
-class CartItemsReadModelQuery(var aggregateId: UUID) : Query
+class CartItemsReadModelQuery(
+    var aggregateId: UUID,
+) : Query
 
 class CartItemsReadModel : ReadModel {
-
     var aggregateId: UUID? = null
     var totalPrice: Double = 0.0
     val data: MutableList<CartItem> = mutableListOf()
@@ -32,6 +33,7 @@ class CartItemsReadModel : ReadModel {
                             image = it.image,
                             price = it.price,
                             productId = it.productId,
+                            fingerPrint = it.deviceFingerPrint,
                         ),
                     )
                     // sum total price
@@ -56,4 +58,5 @@ data class CartItem(
     var image: String,
     var price: Double,
     var productId: UUID,
+    var fingerPrint: String,
 )

@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test
 import java.util.UUID
 
 class ClearcartAggregateTest {
-
     private lateinit var fixture: FixtureConfiguration<CartAggregate>
 
     @BeforeEach

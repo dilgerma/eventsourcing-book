@@ -1,5 +1,6 @@
 package de.eventsourcingbook.cart.domain
 
+import de.eventsourcingbook.cart.application.DeviceFingerPrintCalculator
 import de.eventsourcingbook.cart.common.CommandException
 import de.eventsourcingbook.cart.domain.commands.additem.AddItemCommand
 import de.eventsourcingbook.cart.domain.commands.archiveitem.ArchiveItemCommand
@@ -33,7 +34,10 @@ class CartAggregate {
     // Add Item
     @CommandHandler
     @CreationPolicy(AggregateCreationPolicy.CREATE_IF_MISSING)
-    fun handle(command: AddItemCommand) {
+    fun handle(
+        command: AddItemCommand,
+        fingerPrintCalculator: DeviceFingerPrintCalculator,
+    ) {
         if (aggregateId == null) {
             AggregateLifecycle.apply(CartCreatedEvent(aggregateId = command.aggregateId))
         }
@@ -48,6 +52,7 @@ class CartAggregate {
                 price = command.price,
                 productId = command.productId,
                 itemId = command.itemId,
+                deviceFingerPrint = fingerPrintCalculator.calculateDeviceFingerPrint(),
             ),
         )
     }

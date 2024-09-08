@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import java.util.*
 
 class CartitemsReadModelTest : BaseIntegrationTest() {
-
     @Autowired private lateinit var commandGateway: CommandGateway
 
     @Autowired private lateinit var queryGateway: QueryGateway
@@ -27,7 +26,7 @@ class CartitemsReadModelTest : BaseIntegrationTest() {
         var addItemCommand =
             RandomData.newInstance<AddItemCommand> { this.aggregateId = aggregateId }
 
-        var addItemCommandResult = commandGateway.sendAndWait<CommandResult>(addItemCommand)
+        commandGateway.sendAndWait<CommandResult>(addItemCommand)
 
         awaitUntilAssserted {
             var readModel =

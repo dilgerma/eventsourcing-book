@@ -1,5 +1,6 @@
 package de.eventsourcingbook.cart.additem
 
+import de.eventsourcingbook.cart.application.DeviceFingerPrintCalculator
 import de.eventsourcingbook.cart.common.CommandException
 import de.eventsourcingbook.cart.common.Event
 import de.eventsourcingbook.cart.common.support.RandomData
@@ -7,19 +8,26 @@ import de.eventsourcingbook.cart.domain.CartAggregate
 import de.eventsourcingbook.cart.domain.commands.additem.AddItemCommand
 import de.eventsourcingbook.cart.events.CartCreatedEvent
 import de.eventsourcingbook.cart.events.ItemAddedEvent
+import io.mockk.impl.annotations.RelaxedMockK
+import io.mockk.junit5.MockKExtension
 import org.axonframework.test.aggregate.AggregateTestFixture
 import org.axonframework.test.aggregate.FixtureConfiguration
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import java.util.UUID
 
+@ExtendWith(MockKExtension::class)
 class Max3itemspercartAggregateTest {
-
     private lateinit var fixture: FixtureConfiguration<CartAggregate>
+
+    @RelaxedMockK
+    private lateinit var deviceFingerPrintCalculator: DeviceFingerPrintCalculator
 
     @BeforeEach
     fun setUp() {
         fixture = AggregateTestFixture(CartAggregate::class.java)
+        fixture.registerInjectableResource(deviceFingerPrintCalculator)
     }
 
     @Test

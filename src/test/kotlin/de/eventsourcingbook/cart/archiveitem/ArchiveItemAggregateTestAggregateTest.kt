@@ -15,7 +15,6 @@ import java.util.UUID
 
 /**  */
 class ArchiveItemAggregateTestAggregateTest {
-
     private lateinit var fixture: FixtureConfiguration<CartAggregate>
 
     @BeforeEach

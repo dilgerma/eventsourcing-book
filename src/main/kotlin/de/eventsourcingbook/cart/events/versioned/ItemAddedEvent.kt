@@ -1,10 +1,9 @@
-package de.eventsourcingbook.cart.events
+package de.eventsourcingbook.cart.events.versioned
 
 import de.eventsourcingbook.cart.common.Event
-import org.axonframework.serialization.Revision
 import java.util.UUID
 
-@Revision("2")
+@Deprecated("V2")
 data class ItemAddedEvent(
     var aggregateId: UUID,
     var description: String,
@@ -12,6 +11,4 @@ data class ItemAddedEvent(
     var price: Double,
     var itemId: UUID,
     var productId: UUID,
-    // since v2
-    var deviceFingerPrint: String,
 ) : Event
