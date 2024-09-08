@@ -6,44 +6,44 @@ import de.eventsourcingbook.cart.common.support.BaseIntegrationTest
 import de.eventsourcingbook.cart.common.support.RandomData
 import de.eventsourcingbook.cart.common.support.awaitUntilAssserted
 import de.eventsourcingbook.cart.domain.commands.additem.AddItemCommand
-import java.util.*
 import org.assertj.core.api.Assertions.assertThat
 import org.axonframework.commandhandling.gateway.CommandGateway
 import org.axonframework.queryhandling.QueryGateway
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import java.util.UUID
 
 /** Cart should contain the exact product id of the added item */
 class CartwithproductsReadModelTest : BaseIntegrationTest() {
+    @Autowired private lateinit var commandGateway: CommandGateway
 
-  @Autowired private lateinit var commandGateway: CommandGateway
+    @Autowired private lateinit var queryGateway: QueryGateway
 
-  @Autowired private lateinit var queryGateway: QueryGateway
+    @Test
+    fun `CartwithproductsReadModelTest`() {
+        val aggregateId = UUID.randomUUID()
+        val productId = UUID.randomUUID()
+        val itemId = UUID.randomUUID()
 
-  @Test
-  fun `CartwithproductsReadModelTest`() {
+        var addItemCommand =
+            RandomData.newInstance<AddItemCommand> {
+                this.aggregateId = aggregateId
+                this.productId = productId
+                this.itemId = itemId
+            }
 
-    val aggregateId = UUID.randomUUID()
-    val productId = UUID.randomUUID()
-    val itemId = UUID.randomUUID()
+        commandGateway.sendAndWait<Any>(addItemCommand)
 
-    var addItemCommand =
-        RandomData.newInstance<AddItemCommand> {
-          this.aggregateId = aggregateId
-          this.productId = productId
-          this.itemId = itemId
+        awaitUntilAssserted {
+            var readModel =
+                queryGateway.query(
+                    CartsWithProductsReadModelQuery(productId),
+                    CartsWithProductsReadModel::class.java,
+                )
+            assertThat(readModel.get().data).hasSize(1)
+            assertThat(readModel.get().data).first().matches {
+                it.aggregateId == aggregateId && it.productId == productId
+            }
         }
-
-    commandGateway.sendAndWait<Any>(addItemCommand)
-
-    awaitUntilAssserted {
-      var readModel =
-          queryGateway.query(
-              CartsWithProductsReadModelQuery(productId), CartsWithProductsReadModel::class.java)
-      assertThat(readModel.get().data).hasSize(1)
-      assertThat(readModel.get().data).first().matches {
-        it.aggregateId == aggregateId && it.productId == productId
-      }
     }
-  }
 }

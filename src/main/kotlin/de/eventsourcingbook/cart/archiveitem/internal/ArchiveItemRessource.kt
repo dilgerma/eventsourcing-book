@@ -18,7 +18,7 @@ data class ArchiveItemPayload(var aggregateId: UUID, var productId: UUID)
 @RestController
 class ArchiveItemRessource(private var commandGateway: CommandGateway) {
 
-  var logger = KotlinLogging.logger {}
+    var logger = KotlinLogging.logger {}
 
     @CrossOrigin
     @PostMapping("/debug/archiveitem")

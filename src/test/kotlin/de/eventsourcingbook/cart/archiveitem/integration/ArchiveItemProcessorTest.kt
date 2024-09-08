@@ -19,12 +19,12 @@ class ArchiveItemProcessorTest : BaseIntegrationTest() {
 
     @Autowired private lateinit var streamAssertions: StreamAssertions
 
-  @Test
-  fun `archive item processor test`() {
+    @Test
+    fun `archive item processor test`() {
 
-    val aggregateId = UUID.randomUUID()
-    val productId = UUID.randomUUID()
-    val itemId = UUID.randomUUID()
+        val aggregateId = UUID.randomUUID()
+        val productId = UUID.randomUUID()
+        val itemId = UUID.randomUUID()
 
         var addItemCommand =
             RandomData.newInstance<AddItemCommand> {
@@ -33,13 +33,12 @@ class ArchiveItemProcessorTest : BaseIntegrationTest() {
                 this.itemId = itemId
             }
 
-    commandGateway.sendAndWait<Any>(addItemCommand)
-
+        commandGateway.sendAndWait<Any>(addItemCommand)
 
         var changePriceCommand =
             RandomData.newInstance<ChangePriceCommand> { this.productId = productId }
 
-    commandGateway.sendAndWait<Any>(changePriceCommand)
+        commandGateway.sendAndWait<Any>(changePriceCommand)
 
         awaitUntilAssserted {
             streamAssertions.assertEvent(aggregateId.toString()) {
