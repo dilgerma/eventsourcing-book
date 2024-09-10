@@ -2,7 +2,7 @@
 
 ### Book
 
-The book is written in public and current progress can always be checked [https://eventmodelers.de/das-eventsourcing-buch](here)
+The book is written in public and current progress can always be checked [here](https://eventmodelers.de/das-eventsourcing-buch)
 
 The Github Repository including all source code can be found here:
-[https://github.com/dilgerma/eventsourcing-book](Github)
+[Github](https://github.com/dilgerma/eventsourcing-book)
