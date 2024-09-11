@@ -1,0 +1,252 @@
+{
+  "slices": [
+    {
+      "id": "",
+      "title": "slice: readmodell",
+      "context": "",
+      "commands": [],
+      "events": [],
+      "readmodels": [
+        {
+          "id": "3458764599470359739",
+          "domain": "",
+          "modelContext": "Pattern - Database Projected Read Model",
+          "context": "INTERNAL",
+          "slice": "slice: readmodell",
+          "title": "Todos",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "todo",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "READMODEL",
+          "description": "",
+          "aggregate": "TODO",
+          "aggregateDependencies": [
+            "TODO"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764599470359721",
+              "type": "INBOUND",
+              "title": "Todo Added",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null
+        }
+      ],
+      "screens": [],
+      "processors": [],
+      "specifications": [
+        {
+          "sliceName": "slice: readmodell",
+          "title": "spec:  readmodell",
+          "given": [
+            {
+              "title": "Todo Added",
+              "id": "3458764599592866390",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "cardinality": "Single",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false
+                },
+                {
+                  "name": "todo",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "type": "String",
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764599470359721"
+            }
+          ],
+          "when": [],
+          "then": [
+            {
+              "title": "Todos",
+              "id": "3458764599592866391",
+              "index": 0,
+              "type": "SPEC_READMODEL",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                },
+                {
+                  "name": "todo",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764599470359739"
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "actors": [],
+      "aggregates": [
+        "TODO"
+      ]
+    },
+    {
+      "id": "",
+      "title": "slice: command",
+      "context": "",
+      "commands": [
+        {
+          "id": "3458764599470359580",
+          "domain": "",
+          "modelContext": "Pattern - Database Projected Read Model",
+          "context": "INTERNAL",
+          "slice": "slice: command",
+          "title": "Add Todo",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "cardinality": "Single",
+              "example": "",
+              "mapping": "",
+              "optional": false
+            },
+            {
+              "name": "todo",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "type": "String",
+              "cardinality": "Single"
+            }
+          ],
+          "type": "COMMAND",
+          "description": "",
+          "aggregate": "TODO",
+          "aggregateDependencies": [
+            "TODO"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764599470359721",
+              "type": "OUTBOUND",
+              "title": "Todo Added",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null
+        }
+      ],
+      "events": [
+        {
+          "id": "3458764599470359721",
+          "domain": "",
+          "modelContext": "Pattern - Database Projected Read Model",
+          "context": "INTERNAL",
+          "slice": "slice: command",
+          "title": "Todo Added",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "cardinality": "Single",
+              "example": "",
+              "mapping": "",
+              "optional": false
+            },
+            {
+              "name": "todo",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "type": "String",
+              "cardinality": "Single"
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "TODO",
+          "aggregateDependencies": [
+            "TODO"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764599470359739",
+              "type": "OUTBOUND",
+              "title": "Todos",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764599470359580",
+              "type": "INBOUND",
+              "title": "Add Todo",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null
+        }
+      ],
+      "readmodels": [],
+      "screens": [],
+      "processors": [],
+      "specifications": [],
+      "actors": [],
+      "aggregates": [
+        "TODO"
+      ]
+    }
+  ],
+  "flows": [],
+  "aggregates": [
+    {
+      "id": "3458764599592185924",
+      "title": "TODO",
+      "fields": [],
+      "service": null,
+      "type": "AGGREGATE"
+    }
+  ],
+  "context": "Pattern - Database Projected Read Model",
+  "codeGen": {
+    "application": "",
+    "domain": "",
+    "rootPackage": "",
+    "contextPackage": ""
+  },
+  "boardId": "uXjVKvTN_NQ=",
+  "token": "283e16fb03f2457030c9208407f93f71a73cba4e517c11a4ca5aa07067c5c500"
+}
