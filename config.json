@@ -1,0 +1,199 @@
+{
+  "slices": [
+    {
+      "id": "",
+      "title": "slice: readmodell",
+      "context": "",
+      "commands": [],
+      "events": [],
+      "readmodels": [
+        {
+          "id": "3458764599732471553",
+          "domain": "",
+          "modelContext": "Pattern - Logical Read Modell",
+          "context": "INTERNAL",
+          "slice": "slice: readmodell",
+          "title": "Todos",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "todo",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "todoCount",
+              "type": "Int",
+              "example": "",
+              "mapping": "Todo Added",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "READMODEL",
+          "description": "",
+          "aggregate": "TODO",
+          "aggregateDependencies": [
+            "TODO"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764599732471554",
+              "type": "INBOUND",
+              "title": "Todo Added",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": true,
+          "apiEndpoint": "",
+          "service": null
+        }
+      ],
+      "screens": [],
+      "processors": [],
+      "specifications": [],
+      "actors": [],
+      "aggregates": [
+        "TODO"
+      ]
+    },
+    {
+      "id": "",
+      "title": "slice: command",
+      "context": "",
+      "commands": [
+        {
+          "id": "3458764599732471551",
+          "domain": "",
+          "modelContext": "Pattern - Logical Read Modell",
+          "context": "INTERNAL",
+          "slice": "slice: command",
+          "title": "Add Todo",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "todo",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "COMMAND",
+          "description": "",
+          "aggregate": "TODO",
+          "aggregateDependencies": [
+            "TODO"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764599732471554",
+              "type": "OUTBOUND",
+              "title": "Todo Added",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null
+        }
+      ],
+      "events": [
+        {
+          "id": "3458764599732471554",
+          "domain": "",
+          "modelContext": "Pattern - Logical Read Modell",
+          "context": "INTERNAL",
+          "slice": "slice: command",
+          "title": "Todo Added",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            },
+            {
+              "name": "todo",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "cardinality": "Single"
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "TODO",
+          "aggregateDependencies": [
+            "TODO"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764599732471553",
+              "type": "OUTBOUND",
+              "title": "Todos",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764599732471551",
+              "type": "INBOUND",
+              "title": "Add Todo",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null
+        }
+      ],
+      "readmodels": [],
+      "screens": [],
+      "processors": [],
+      "specifications": [],
+      "actors": [],
+      "aggregates": [
+        "TODO"
+      ]
+    }
+  ],
+  "flows": [],
+  "aggregates": [
+    {
+      "id": "3458764599592185924",
+      "title": "TODO",
+      "fields": [],
+      "service": null,
+      "type": "AGGREGATE"
+    }
+  ],
+  "context": "Pattern - Logical Read Modell",
+  "codeGen": {
+    "application": "",
+    "domain": "",
+    "rootPackage": "",
+    "contextPackage": ""
+  },
+  "boardId": "uXjVKvTN_NQ=",
+  "token": "283e16fb03f2457030c9208407f93f71a73cba4e517c11a4ca5aa07067c5c500"
+}
