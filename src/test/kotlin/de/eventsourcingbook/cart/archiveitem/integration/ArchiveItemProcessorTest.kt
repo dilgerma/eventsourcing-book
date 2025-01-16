@@ -1,6 +1,5 @@
 package de.eventsourcingbook.cart.archiveitem.integration
 
-import de.eventsourcingbook.cart.common.CommandResult
 import de.eventsourcingbook.cart.common.support.BaseIntegrationTest
 import de.eventsourcingbook.cart.common.support.RandomData
 import de.eventsourcingbook.cart.common.support.StreamAssertions
