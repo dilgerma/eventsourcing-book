@@ -1,33 +1,58 @@
-## Nebulit GmbH - Eventmodeling Template
+This is the sample project for the Book "Understanding Eventsourcing"
 
-### Setup
+[Buy the book on Leanpub](https://leanpub.com/eventmodeling-and-eventsourcing)
 
-Slices sind im _root_ Package (wie im Generator angegeben) als Packages definiert.
+The first book to combine Eventmodeling, Eventsourcing to plan and build Software Systems of any size and complexity.
 
-### Todos nach der initialen Generierung
+The Eventmodel is here:
 
-Im Code sind TODOs definiert für die Stellen die angepasst werden müssen.
-Der Generator trifft bestimmte Grundannahmen (aggregateIds sind UUIDs beispielsweise).
+[Eventmodel in Miro](https://miro.com/app/board/uXjVKvTN_NQ=/)
 
-Wird von diesen Annahmen abgewichen kompiliert der Code ggf. nicht sofort sondern muss leicht
-angepasst werden.
+If you want to quickly learn about Eventmodeling, here is the original article:
 
-Ihre Code Richtlinien sind natürlich führend, daher ist es erwartungskonform dass Code
-nicht sofort kompiliert (es sollten aber wirklich nur kleine Anpassungen notwendig sein).
+[The original Eventmodeling Article](https://eventmodeling.org/posts/what-is-event-modeling/)
 
-### Start der Applikation
+By subscribing to the newsletter you´ll get access to the "little" Eventmodeling Handbook, which can serve as a quick reference in addition to the book.
 
-Zum Start des Services kann die Klasse _ApplicationStarter_ verwendet werden in _src/test/kotlin_.
-Warum in _test_?
+[The Little Eventmodeling Book](https://newsletter.nebulit.de/)
 
-Diese Klasse startet die komplette Umgebung (inkl. Postgres und ggf. Kafka über TestContainers)
+### Book
 
-### Package Struktur
+The book is written in public and current progress can always be checked [here](https://eventmodelers.de/das-eventsourcing-buch)
 
-Events sind im Package "events"
+The Github Repository including all source code can be found here:
+[Github](https://github.com/dilgerma/eventsourcing-book)
 
-Aggregates liegen im Package "domain"
+### Sample Application
 
-Slices haben jeweils ein isoliertes Package <sliceName>
+The sample application is written in Kotlin / Spring / Axon
 
-Package "common" enthält einige Interfaces für die generelle Struktur.
+[Kotlin](https://kotlinlang.org/)
+[Spring](https://spring.io/projects/spring-framework)
+[Axon](https://www.axoniq.io/products/axon-framework)
+
+You need to have Docker installed.
+
+[Docker](https://www.docker.com/)
+
+Here are the simple steps to start the application in a development environment.
+
+- install IntelliJ IDEA
+
+- Install the most recent Java SDK (File -> Project -> SDK)
+
+- In the terminal type 'mvn clean install', this will do a full maven install of all the dependencies. You can do the same in IntelliJ as well.
+
+- Ensure you have docker running (if you don't already have it installed on your machine, you need it for testcontainers to work. on Windows just install the docker desktop app).
+
+- Build the app
+
+Start the app by right-cicking on the ["ApplicationStarter"](https://github.com/dilgerma/eventsourcing-book/blob/main/src/test/kotlin/de/eventsourcingbook/cart/ApplicationStarter.kt) in src/test/kotlin and klick run.
+This will start the whole application including all dependencies.
+
+### Code Generation
+
+The source code in the book was mostly generated directly from the Event Model. If you want to see this process in action, I can highly
+recommend this E-Mail Course that spans 8 days currently and guides you through the process of creating your own custom Code Generator.
+
+[E-Mail Course](https://newsletter.nebulit.de/generator)
