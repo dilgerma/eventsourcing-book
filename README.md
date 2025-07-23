@@ -33,6 +33,8 @@ The sample application is written in Kotlin / Spring / Axon
 [Spring](https://spring.io/projects/spring-framework)
 [Axon](https://www.axoniq.io/products/axon-framework)
 
+( there is a typescript implementation available here: [Typescript+Emmet](https://github.com/dilgerma/understanding-eventsourcing-emmet) )
+
 You need to have Docker installed.
 
 [Docker](https://www.docker.com/)
