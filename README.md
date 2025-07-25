@@ -51,8 +51,10 @@ Here are the simple steps to start the application in a development environment.
 
 - Build the app
 
-Start the app by right-cicking on the ["ApplicationStarter"](https://github.com/dilgerma/eventsourcing-book/blob/main/src/test/kotlin/de/eventsourcingbook/cart/ApplicationStarter.kt) in src/test/kotlin and klick run.
+Start the app by right-clicking on the ["ApplicationStarter"](https://github.com/dilgerma/eventsourcing-book/blob/main/src/test/kotlin/de/eventsourcingbook/cart/ApplicationStarter.kt) in src/test/kotlin and klick run.
 This will start the whole application including all dependencies.
+
+The app is then available via port 8080.
 
 ### Code Generation
 
