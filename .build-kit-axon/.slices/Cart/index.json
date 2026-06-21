@@ -6,7 +6,7 @@
       "index": 1,
       "context": "Cart",
       "folder": "additem",
-      "status": "Done"
+      "status": "Planned"
     },
     {
       "id": "3458764595831815463",
@@ -14,7 +14,7 @@
       "index": 2,
       "context": "Cart",
       "folder": "removeitem",
-      "status": "Done"
+      "status": "Planned"
     },
     {
       "id": "3458764595831815528",
@@ -22,7 +22,7 @@
       "index": 3,
       "context": "Cart",
       "folder": "cartitems",
-      "status": "Done"
+      "status": "Planned"
     },
     {
       "id": "3458764595935790438",
@@ -30,7 +30,7 @@
       "index": 4,
       "context": "Cart",
       "folder": "clearcart",
-      "status": "Done"
+      "status": "Planned"
     },
     {
       "id": "3458764596700878567",
@@ -38,7 +38,7 @@
       "index": 5,
       "context": "Cart",
       "folder": "changeinventory",
-      "status": "Done"
+      "status": "Planned"
     },
     {
       "id": "3458764596700878694",
@@ -46,7 +46,7 @@
       "index": 6,
       "context": "Cart",
       "folder": "inventories",
-      "status": "Done"
+      "status": "Planned"
     },
     {
       "id": "3458764596700962283",
@@ -54,7 +54,7 @@
       "index": 7,
       "context": "Cart",
       "folder": "changeprice",
-      "status": "Done"
+      "status": "Planned"
     },
     {
       "id": "3458764597396562122",
@@ -62,7 +62,7 @@
       "index": 8,
       "context": "Cart",
       "folder": "cartwithproducts",
-      "status": "Done"
+      "status": "Planned"
     },
     {
       "id": "3458764596700962150",
@@ -78,7 +78,7 @@
       "index": 10,
       "context": "Cart",
       "folder": "archiveitem",
-      "status": "Done"
+      "status": "Planned"
     },
     {
       "id": "3458764596110806982",
@@ -86,7 +86,7 @@
       "index": 11,
       "context": "Cart",
       "folder": "submitcart",
-      "status": "Done"
+      "status": "Planned"
     },
     {
       "id": "3458764596112606680",
@@ -94,7 +94,7 @@
       "index": 12,
       "context": "Cart",
       "folder": "submittedcartdata",
-      "status": "Done"
+      "status": "Planned"
     },
     {
       "id": "3458764596112734544",
@@ -102,7 +102,7 @@
       "index": 13,
       "context": "Cart",
       "folder": "publishcart",
-      "status": "Done"
+      "status": "Planned"
     }
   ]
 }
