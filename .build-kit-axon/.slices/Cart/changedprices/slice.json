@@ -1,0 +1,88 @@
+{
+  "id": "3458764596700962150",
+  "status": "Created",
+  "title": "slice: Changed Prices",
+  "context": "Cart",
+  "sliceType": "STATE_VIEW",
+  "commands": [],
+  "events": [],
+  "readmodels": [
+    {
+      "id": "3458764596409128019",
+      "tags": [],
+      "domain": "Cart",
+      "elementContext": "INTERNAL",
+      "modelContext": "Cart",
+      "context": "INTERNAL",
+      "slice": "slice: Changed Prices",
+      "title": "Changed Prices",
+      "fields": [
+        {
+          "name": "newPrice",
+          "type": "Double",
+          "example": "",
+          "mapping": "",
+          "optional": false,
+          "cardinality": "Single",
+          "idAttribute": false
+        },
+        {
+          "name": "oldPrice",
+          "type": "Double",
+          "example": "",
+          "mapping": "",
+          "optional": false,
+          "cardinality": "Single",
+          "idAttribute": false
+        },
+        {
+          "name": "productId",
+          "type": "String",
+          "example": "",
+          "mapping": "",
+          "optional": false,
+          "cardinality": "Single",
+          "idAttribute": true
+        }
+      ],
+      "type": "READMODEL",
+      "description": "",
+      "aggregate": "Pricing",
+      "aggregateDependencies": [
+        "Pricing"
+      ],
+      "dependencies": [
+        {
+          "id": "3458764596406327949",
+          "type": "OUTBOUND",
+          "title": "automation",
+          "elementType": "AUTOMATION"
+        },
+        {
+          "id": "3458764595641022550",
+          "type": "INBOUND",
+          "title": "Price Changed",
+          "elementType": "EVENT"
+        }
+      ],
+      "apiEndpoint": "",
+      "service": null,
+      "createsAggregate": false,
+      "triggers": [],
+      "sketched": false,
+      "prototype": {
+        "activeByDefault": false
+      }
+    }
+  ],
+  "screens": [],
+  "screenImages": [],
+  "screenLayouts": [],
+  "processors": [],
+  "tables": [],
+  "specifications": [],
+  "actors": [],
+  "aggregates": [
+    "Pricing"
+  ]
+}

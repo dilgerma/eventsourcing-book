@@ -1,0 +1,108 @@
+{
+  "slices": [
+    {
+      "id": "3458764595831815141",
+      "slice": "slice: add item",
+      "index": 1,
+      "context": "Cart",
+      "folder": "additem",
+      "status": "Done"
+    },
+    {
+      "id": "3458764595831815463",
+      "slice": "slice: remove item",
+      "index": 2,
+      "context": "Cart",
+      "folder": "removeitem",
+      "status": "Done"
+    },
+    {
+      "id": "3458764595831815528",
+      "slice": "slice: cart items",
+      "index": 3,
+      "context": "Cart",
+      "folder": "cartitems",
+      "status": "Done"
+    },
+    {
+      "id": "3458764595935790438",
+      "slice": "slice: clear cart",
+      "index": 4,
+      "context": "Cart",
+      "folder": "clearcart",
+      "status": "Done"
+    },
+    {
+      "id": "3458764596700878567",
+      "slice": "slice: change inventory",
+      "index": 5,
+      "context": "Cart",
+      "folder": "changeinventory",
+      "status": "Done"
+    },
+    {
+      "id": "3458764596700878694",
+      "slice": "slice: Inventories",
+      "index": 6,
+      "context": "Cart",
+      "folder": "inventories",
+      "status": "Done"
+    },
+    {
+      "id": "3458764596700962283",
+      "slice": "slice: change price",
+      "index": 7,
+      "context": "Cart",
+      "folder": "changeprice",
+      "status": "Done"
+    },
+    {
+      "id": "3458764597396562122",
+      "slice": "slice: cart with products",
+      "index": 8,
+      "context": "Cart",
+      "folder": "cartwithproducts",
+      "status": "Done"
+    },
+    {
+      "id": "3458764596700962150",
+      "slice": "slice: Changed Prices",
+      "index": 9,
+      "context": "Cart",
+      "folder": "changedprices",
+      "status": "Created"
+    },
+    {
+      "id": "3458764596700962479",
+      "slice": "slice: Archive Item",
+      "index": 10,
+      "context": "Cart",
+      "folder": "archiveitem",
+      "status": "Done"
+    },
+    {
+      "id": "3458764596110806982",
+      "slice": "slice: submit cart",
+      "index": 11,
+      "context": "Cart",
+      "folder": "submitcart",
+      "status": "Done"
+    },
+    {
+      "id": "3458764596112606680",
+      "slice": "slice: submitted cart data",
+      "index": 12,
+      "context": "Cart",
+      "folder": "submittedcartdata",
+      "status": "Done"
+    },
+    {
+      "id": "3458764596112734544",
+      "slice": "slice: publish cart",
+      "index": 13,
+      "context": "Cart",
+      "folder": "publishcart",
+      "status": "Done"
+    }
+  ]
+}
